@@ -15,18 +15,180 @@ datasource db {
 
 
 
+enum Role {
+  ADMIN
+  STATE_HEAD
+  DISTRICT_HEAD
+  BLOCK_MANAGER
+  STORE_MANAGER
+  SITE_ENGINEER
+}
 
-model User { 
-  id    Int     @id @default(autoincrement()) 
-  email String  @unique
-  name  String?
-  posts Post[]
-} 
-model Post { 
-  id        Int     @id @default(autoincrement()) 
-  title     String
-  content   String?
-  published Boolean @default(false) 
-  authorId  Int
-  author    User    @relation(fields: [authorId], references: [id]) 
-} 
+enum RequestStatus {
+  PENDING
+  MODIFIED
+  APPROVED_BY_BM
+  REJECTED_BY_BM
+  APPROVED_BY_DH
+  REJECTED_BY_DH
+  FULFILLED
+  RECEIVED
+  CANCELLED
+}
+
+enum ReplenishStatus {
+  PENDING
+  APPROVED
+  FULFILLED
+  REJECTED
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  phone     String?
+  role      Role
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations based on role
+  districtId Int?
+  district   District? @relation(fields: [districtId], references: [id])
+
+  blockId Int?
+  block   Block? @relation(fields: [blockId], references: [id])
+
+  // Material requests created by site engineers
+  materialRequests MaterialRequest[]
+
+  // Replenish requests created by store managers
+  replenishRequests ReplenishRequest[]
+
+  @@map("users")
+}
+
+model District {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  code      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  blocks Block[]
+  users  User[]
+
+  @@map("districts")
+}
+
+model Block {
+  id         Int      @id @default(autoincrement())
+  name       String
+  code       String   @unique
+  districtId Int
+  district   District @relation(fields: [districtId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  inventory        Inventory?
+  users            User[]
+  materialRequests MaterialRequest[]
+
+  @@map("blocks")
+}
+
+model Inventory {
+  id        Int      @id @default(autoincrement())
+  blockId   Int      @unique
+  block     Block    @relation(fields: [blockId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items             InventoryItem[]
+  replenishRequests ReplenishRequest[]
+
+  @@map("inventories")
+}
+
+model InventoryItem {
+  id          Int       @id @default(autoincrement())
+  inventoryId Int
+  inventory   Inventory @relation(fields: [inventoryId], references: [id], onDelete: Cascade)
+
+  materialName String
+  quantity     Float
+  unit         String
+  minThreshold Float    @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([inventoryId, materialName])
+  @@map("inventory_items")
+}
+
+model MaterialRequest {
+  id              Int           @id @default(autoincrement())
+  siteEngineerId  Int
+  siteEngineer    User          @relation(fields: [siteEngineerId], references: [id])
+  blockId         Int
+  block           Block         @relation(fields: [blockId], references: [id])
+  status          RequestStatus @default(PENDING)
+  remarks         String?
+  bmRemarks       String?
+  dhRemarks       String?
+  smRemarks       String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  items MaterialRequestItem[]
+
+  @@map("material_requests")
+}
+
+model MaterialRequestItem {
+  id               Int             @id @default(autoincrement())
+  materialRequestId Int
+  materialRequest  MaterialRequest @relation(fields: [materialRequestId], references: [id], onDelete: Cascade)
+
+  materialName    String
+  quantity        Float
+  unit            String
+  modifiedQuantity Float?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("material_request_items")
+}
+
+model ReplenishRequest {
+  id             Int             @id @default(autoincrement())
+  storeManagerId Int
+  storeManager   User            @relation(fields: [storeManagerId], references: [id])
+  inventoryId    Int
+  inventory      Inventory       @relation(fields: [inventoryId], references: [id])
+  status         ReplenishStatus @default(PENDING)
+  remarks        String?
+  stateHeadRemarks String?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  items ReplenishRequestItem[]
+
+  @@map("replenish_requests")
+}
+
+model ReplenishRequestItem {
+  id                 Int              @id @default(autoincrement())
+  replenishRequestId Int
+  replenishRequest   ReplenishRequest @relation(fields: [replenishRequestId], references: [id], onDelete: Cascade)
+
+  materialName String
+  quantity     Float
+  unit         String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("replenish_request_items")
+}
