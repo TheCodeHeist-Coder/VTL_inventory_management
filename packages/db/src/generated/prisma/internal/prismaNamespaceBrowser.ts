@@ -52,7 +52,14 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
-  Post: 'Post'
+  District: 'District',
+  Block: 'Block',
+  Inventory: 'Inventory',
+  InventoryItem: 'InventoryItem',
+  MaterialRequest: 'MaterialRequest',
+  MaterialRequestItem: 'MaterialRequestItem',
+  ReplenishRequest: 'ReplenishRequest',
+  ReplenishRequestItem: 'ReplenishRequestItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -73,22 +80,123 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const UserScalarFieldEnum = {
   id: 'id',
+  name: 'name',
   email: 'email',
-  name: 'name'
+  password: 'password',
+  phone: 'phone',
+  role: 'role',
+  active: 'active',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  districtId: 'districtId',
+  blockId: 'blockId'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const PostScalarFieldEnum = {
+export const DistrictScalarFieldEnum = {
   id: 'id',
-  title: 'title',
-  content: 'content',
-  published: 'published',
-  authorId: 'authorId'
+  name: 'name',
+  code: 'code',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
-export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
+export type DistrictScalarFieldEnum = (typeof DistrictScalarFieldEnum)[keyof typeof DistrictScalarFieldEnum]
+
+
+export const BlockScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  code: 'code',
+  districtId: 'districtId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BlockScalarFieldEnum = (typeof BlockScalarFieldEnum)[keyof typeof BlockScalarFieldEnum]
+
+
+export const InventoryScalarFieldEnum = {
+  id: 'id',
+  blockId: 'blockId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type InventoryScalarFieldEnum = (typeof InventoryScalarFieldEnum)[keyof typeof InventoryScalarFieldEnum]
+
+
+export const InventoryItemScalarFieldEnum = {
+  id: 'id',
+  inventoryId: 'inventoryId',
+  materialName: 'materialName',
+  quantity: 'quantity',
+  unit: 'unit',
+  minThreshold: 'minThreshold',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type InventoryItemScalarFieldEnum = (typeof InventoryItemScalarFieldEnum)[keyof typeof InventoryItemScalarFieldEnum]
+
+
+export const MaterialRequestScalarFieldEnum = {
+  id: 'id',
+  siteEngineerId: 'siteEngineerId',
+  blockId: 'blockId',
+  status: 'status',
+  remarks: 'remarks',
+  bmRemarks: 'bmRemarks',
+  dhRemarks: 'dhRemarks',
+  smRemarks: 'smRemarks',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MaterialRequestScalarFieldEnum = (typeof MaterialRequestScalarFieldEnum)[keyof typeof MaterialRequestScalarFieldEnum]
+
+
+export const MaterialRequestItemScalarFieldEnum = {
+  id: 'id',
+  materialRequestId: 'materialRequestId',
+  materialName: 'materialName',
+  quantity: 'quantity',
+  unit: 'unit',
+  modifiedQuantity: 'modifiedQuantity',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MaterialRequestItemScalarFieldEnum = (typeof MaterialRequestItemScalarFieldEnum)[keyof typeof MaterialRequestItemScalarFieldEnum]
+
+
+export const ReplenishRequestScalarFieldEnum = {
+  id: 'id',
+  storeManagerId: 'storeManagerId',
+  inventoryId: 'inventoryId',
+  status: 'status',
+  remarks: 'remarks',
+  stateHeadRemarks: 'stateHeadRemarks',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReplenishRequestScalarFieldEnum = (typeof ReplenishRequestScalarFieldEnum)[keyof typeof ReplenishRequestScalarFieldEnum]
+
+
+export const ReplenishRequestItemScalarFieldEnum = {
+  id: 'id',
+  replenishRequestId: 'replenishRequestId',
+  materialName: 'materialName',
+  quantity: 'quantity',
+  unit: 'unit',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReplenishRequestItemScalarFieldEnum = (typeof ReplenishRequestItemScalarFieldEnum)[keyof typeof ReplenishRequestItemScalarFieldEnum]
 
 
 export const SortOrder = {

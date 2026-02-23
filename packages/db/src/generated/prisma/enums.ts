@@ -9,7 +9,38 @@
 * 🟢 You can import this file directly.
 */
 
+export const Role = {
+  ADMIN: 'ADMIN',
+  STATE_HEAD: 'STATE_HEAD',
+  DISTRICT_HEAD: 'DISTRICT_HEAD',
+  BLOCK_MANAGER: 'BLOCK_MANAGER',
+  STORE_MANAGER: 'STORE_MANAGER',
+  SITE_ENGINEER: 'SITE_ENGINEER'
+} as const
+
+export type Role = (typeof Role)[keyof typeof Role]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const RequestStatus = {
+  PENDING: 'PENDING',
+  MODIFIED: 'MODIFIED',
+  APPROVED_BY_BM: 'APPROVED_BY_BM',
+  REJECTED_BY_BM: 'REJECTED_BY_BM',
+  APPROVED_BY_DH: 'APPROVED_BY_DH',
+  REJECTED_BY_DH: 'REJECTED_BY_DH',
+  FULFILLED: 'FULFILLED',
+  RECEIVED: 'RECEIVED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type RequestStatus = (typeof RequestStatus)[keyof typeof RequestStatus]
+
+
+export const ReplenishStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  FULFILLED: 'FULFILLED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type ReplenishStatus = (typeof ReplenishStatus)[keyof typeof ReplenishStatus]

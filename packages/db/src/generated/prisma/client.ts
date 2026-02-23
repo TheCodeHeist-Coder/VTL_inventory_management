@@ -45,7 +45,42 @@ export { Prisma }
  */
 export type User = Prisma.UserModel
 /**
- * Model Post
+ * Model District
  * 
  */
-export type Post = Prisma.PostModel
+export type District = Prisma.DistrictModel
+/**
+ * Model Block
+ * 
+ */
+export type Block = Prisma.BlockModel
+/**
+ * Model Inventory
+ * 
+ */
+export type Inventory = Prisma.InventoryModel
+/**
+ * Model InventoryItem
+ * 
+ */
+export type InventoryItem = Prisma.InventoryItemModel
+/**
+ * Model MaterialRequest
+ * 
+ */
+export type MaterialRequest = Prisma.MaterialRequestModel
+/**
+ * Model MaterialRequestItem
+ * 
+ */
+export type MaterialRequestItem = Prisma.MaterialRequestItemModel
+/**
+ * Model ReplenishRequest
+ * 
+ */
+export type ReplenishRequest = Prisma.ReplenishRequestModel
+/**
+ * Model ReplenishRequestItem
+ * 
+ */
+export type ReplenishRequestItem = Prisma.ReplenishRequestItemModel
