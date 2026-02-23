@@ -13,8 +13,6 @@ datasource db {
   provider = "postgresql"
 }
 
-
-
 enum Role {
   ADMIN
   STATE_HEAD
@@ -59,7 +57,10 @@ model User {
   district   District? @relation(fields: [districtId], references: [id])
 
   blockId String?
-  block   Block? @relation(fields: [blockId], references: [id])
+  block   Block?  @relation(fields: [blockId], references: [id])
+
+  siteId String?
+  site   Site?   @relation(fields: [siteId], references: [id])
 
   // Material requests created by site engineers
   materialRequests MaterialRequest[]
@@ -70,6 +71,18 @@ model User {
   @@map("users")
 }
 
+model State {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  code      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  districts District[]
+
+  @@map("states")
+}
+
 model District {
   id        String   @id @default(cuid())
   name      String   @unique
@@ -77,8 +90,10 @@ model District {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  blocks Block[]
-  users  User[]
+  blocks  Block[]
+  users   User[]
+  state   State?  @relation(fields: [stateId], references: [id])
+  stateId String?
 
   @@map("districts")
 }
@@ -95,8 +110,24 @@ model Block {
   inventory        Inventory?
   users            User[]
   materialRequests MaterialRequest[]
+  sites            Site[]
 
   @@map("blocks")
+}
+
+model Site {
+  id        String   @id @default(cuid())
+  name      String
+  code      String   @unique
+  blockId   String
+  block     Block    @relation(fields: [blockId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users            User[]
+  materialRequests MaterialRequest[]
+
+  @@map("sites")
 }
 
 model Inventory {
@@ -129,50 +160,52 @@ model InventoryItem {
 }
 
 model MaterialRequest {
-  id              String        @id @default(cuid())
-  siteEngineerId  String
-  siteEngineer    User          @relation(fields: [siteEngineerId], references: [id])
-  blockId         String
-  block           Block         @relation(fields: [blockId], references: [id])
-  status          RequestStatus @default(PENDING)
-  remarks         String?
-  bmRemarks       String?
-  dhRemarks       String?
-  smRemarks       String?
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
+  id             String        @id @default(cuid())
+  siteEngineerId String
+  siteEngineer   User          @relation(fields: [siteEngineerId], references: [id])
+  blockId        String
+  block          Block         @relation(fields: [blockId], references: [id])
+  status         RequestStatus @default(PENDING)
+  remarks        String?
+  bmRemarks      String?
+  dhRemarks      String?
+  smRemarks      String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
 
-  items MaterialRequestItem[]
+  items  MaterialRequestItem[]
+  site   Site?                 @relation(fields: [siteId], references: [id])
+  siteId String?
 
   @@map("material_requests")
 }
 
 model MaterialRequestItem {
-  id               String          @id @default(cuid())
+  id                String          @id @default(cuid())
   materialRequestId String
-  materialRequest  MaterialRequest @relation(fields: [materialRequestId], references: [id], onDelete: Cascade)
+  materialRequest   MaterialRequest @relation(fields: [materialRequestId], references: [id], onDelete: Cascade)
 
-  materialName    String
-  quantity        Float
-  unit            String
+  materialName     String
+  quantity         Float
+  unit             String
   modifiedQuantity Float?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 
   @@map("material_request_items")
 }
 
 model ReplenishRequest {
-  id             String          @id @default(cuid())
-  storeManagerId String
-  storeManager   User            @relation(fields: [storeManagerId], references: [id])
-  inventoryId    String
-  inventory      Inventory       @relation(fields: [inventoryId], references: [id])
-  status         ReplenishStatus @default(PENDING)
-  remarks        String?
+  id               String          @id @default(cuid())
+  storeManagerId   String
+  storeManager     User            @relation(fields: [storeManagerId], references: [id])
+  inventoryId      String
+  inventory        Inventory       @relation(fields: [inventoryId], references: [id])
+  status           ReplenishStatus @default(PENDING)
+  remarks          String?
   stateHeadRemarks String?
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
 
   items ReplenishRequestItem[]
 
