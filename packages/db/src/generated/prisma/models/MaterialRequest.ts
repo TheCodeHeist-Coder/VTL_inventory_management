@@ -35,6 +35,7 @@ export type MaterialRequestMinAggregateOutputType = {
   smRemarks: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  siteId: string | null
 }
 
 export type MaterialRequestMaxAggregateOutputType = {
@@ -48,6 +49,7 @@ export type MaterialRequestMaxAggregateOutputType = {
   smRemarks: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  siteId: string | null
 }
 
 export type MaterialRequestCountAggregateOutputType = {
@@ -61,6 +63,7 @@ export type MaterialRequestCountAggregateOutputType = {
   smRemarks: number
   createdAt: number
   updatedAt: number
+  siteId: number
   _all: number
 }
 
@@ -76,6 +79,7 @@ export type MaterialRequestMinAggregateInputType = {
   smRemarks?: true
   createdAt?: true
   updatedAt?: true
+  siteId?: true
 }
 
 export type MaterialRequestMaxAggregateInputType = {
@@ -89,6 +93,7 @@ export type MaterialRequestMaxAggregateInputType = {
   smRemarks?: true
   createdAt?: true
   updatedAt?: true
+  siteId?: true
 }
 
 export type MaterialRequestCountAggregateInputType = {
@@ -102,6 +107,7 @@ export type MaterialRequestCountAggregateInputType = {
   smRemarks?: true
   createdAt?: true
   updatedAt?: true
+  siteId?: true
   _all?: true
 }
 
@@ -188,6 +194,7 @@ export type MaterialRequestGroupByOutputType = {
   smRemarks: string | null
   createdAt: Date
   updatedAt: Date
+  siteId: string | null
   _count: MaterialRequestCountAggregateOutputType | null
   _min: MaterialRequestMinAggregateOutputType | null
   _max: MaterialRequestMaxAggregateOutputType | null
@@ -222,9 +229,11 @@ export type MaterialRequestWhereInput = {
   smRemarks?: Prisma.StringNullableFilter<"MaterialRequest"> | string | null
   createdAt?: Prisma.DateTimeFilter<"MaterialRequest"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MaterialRequest"> | Date | string
+  siteId?: Prisma.StringNullableFilter<"MaterialRequest"> | string | null
   siteEngineer?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   block?: Prisma.XOR<Prisma.BlockScalarRelationFilter, Prisma.BlockWhereInput>
   items?: Prisma.MaterialRequestItemListRelationFilter
+  site?: Prisma.XOR<Prisma.SiteNullableScalarRelationFilter, Prisma.SiteWhereInput> | null
 }
 
 export type MaterialRequestOrderByWithRelationInput = {
@@ -238,9 +247,11 @@ export type MaterialRequestOrderByWithRelationInput = {
   smRemarks?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  siteId?: Prisma.SortOrderInput | Prisma.SortOrder
   siteEngineer?: Prisma.UserOrderByWithRelationInput
   block?: Prisma.BlockOrderByWithRelationInput
   items?: Prisma.MaterialRequestItemOrderByRelationAggregateInput
+  site?: Prisma.SiteOrderByWithRelationInput
 }
 
 export type MaterialRequestWhereUniqueInput = Prisma.AtLeast<{
@@ -257,9 +268,11 @@ export type MaterialRequestWhereUniqueInput = Prisma.AtLeast<{
   smRemarks?: Prisma.StringNullableFilter<"MaterialRequest"> | string | null
   createdAt?: Prisma.DateTimeFilter<"MaterialRequest"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MaterialRequest"> | Date | string
+  siteId?: Prisma.StringNullableFilter<"MaterialRequest"> | string | null
   siteEngineer?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   block?: Prisma.XOR<Prisma.BlockScalarRelationFilter, Prisma.BlockWhereInput>
   items?: Prisma.MaterialRequestItemListRelationFilter
+  site?: Prisma.XOR<Prisma.SiteNullableScalarRelationFilter, Prisma.SiteWhereInput> | null
 }, "id">
 
 export type MaterialRequestOrderByWithAggregationInput = {
@@ -273,6 +286,7 @@ export type MaterialRequestOrderByWithAggregationInput = {
   smRemarks?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  siteId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.MaterialRequestCountOrderByAggregateInput
   _max?: Prisma.MaterialRequestMaxOrderByAggregateInput
   _min?: Prisma.MaterialRequestMinOrderByAggregateInput
@@ -292,6 +306,7 @@ export type MaterialRequestScalarWhereWithAggregatesInput = {
   smRemarks?: Prisma.StringNullableWithAggregatesFilter<"MaterialRequest"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"MaterialRequest"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"MaterialRequest"> | Date | string
+  siteId?: Prisma.StringNullableWithAggregatesFilter<"MaterialRequest"> | string | null
 }
 
 export type MaterialRequestCreateInput = {
@@ -306,6 +321,7 @@ export type MaterialRequestCreateInput = {
   siteEngineer: Prisma.UserCreateNestedOneWithoutMaterialRequestsInput
   block: Prisma.BlockCreateNestedOneWithoutMaterialRequestsInput
   items?: Prisma.MaterialRequestItemCreateNestedManyWithoutMaterialRequestInput
+  site?: Prisma.SiteCreateNestedOneWithoutMaterialRequestsInput
 }
 
 export type MaterialRequestUncheckedCreateInput = {
@@ -319,6 +335,7 @@ export type MaterialRequestUncheckedCreateInput = {
   smRemarks?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  siteId?: string | null
   items?: Prisma.MaterialRequestItemUncheckedCreateNestedManyWithoutMaterialRequestInput
 }
 
@@ -334,6 +351,7 @@ export type MaterialRequestUpdateInput = {
   siteEngineer?: Prisma.UserUpdateOneRequiredWithoutMaterialRequestsNestedInput
   block?: Prisma.BlockUpdateOneRequiredWithoutMaterialRequestsNestedInput
   items?: Prisma.MaterialRequestItemUpdateManyWithoutMaterialRequestNestedInput
+  site?: Prisma.SiteUpdateOneWithoutMaterialRequestsNestedInput
 }
 
 export type MaterialRequestUncheckedUpdateInput = {
@@ -347,6 +365,7 @@ export type MaterialRequestUncheckedUpdateInput = {
   smRemarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   items?: Prisma.MaterialRequestItemUncheckedUpdateManyWithoutMaterialRequestNestedInput
 }
 
@@ -361,6 +380,7 @@ export type MaterialRequestCreateManyInput = {
   smRemarks?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  siteId?: string | null
 }
 
 export type MaterialRequestUpdateManyMutationInput = {
@@ -385,6 +405,7 @@ export type MaterialRequestUncheckedUpdateManyInput = {
   smRemarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type MaterialRequestListRelationFilter = {
@@ -408,6 +429,7 @@ export type MaterialRequestCountOrderByAggregateInput = {
   smRemarks?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  siteId?: Prisma.SortOrder
 }
 
 export type MaterialRequestMaxOrderByAggregateInput = {
@@ -421,6 +443,7 @@ export type MaterialRequestMaxOrderByAggregateInput = {
   smRemarks?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  siteId?: Prisma.SortOrder
 }
 
 export type MaterialRequestMinOrderByAggregateInput = {
@@ -434,6 +457,7 @@ export type MaterialRequestMinOrderByAggregateInput = {
   smRemarks?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  siteId?: Prisma.SortOrder
 }
 
 export type MaterialRequestScalarRelationFilter = {
@@ -525,6 +549,48 @@ export type MaterialRequestUncheckedUpdateManyWithoutBlockNestedInput = {
   deleteMany?: Prisma.MaterialRequestScalarWhereInput | Prisma.MaterialRequestScalarWhereInput[]
 }
 
+export type MaterialRequestCreateNestedManyWithoutSiteInput = {
+  create?: Prisma.XOR<Prisma.MaterialRequestCreateWithoutSiteInput, Prisma.MaterialRequestUncheckedCreateWithoutSiteInput> | Prisma.MaterialRequestCreateWithoutSiteInput[] | Prisma.MaterialRequestUncheckedCreateWithoutSiteInput[]
+  connectOrCreate?: Prisma.MaterialRequestCreateOrConnectWithoutSiteInput | Prisma.MaterialRequestCreateOrConnectWithoutSiteInput[]
+  createMany?: Prisma.MaterialRequestCreateManySiteInputEnvelope
+  connect?: Prisma.MaterialRequestWhereUniqueInput | Prisma.MaterialRequestWhereUniqueInput[]
+}
+
+export type MaterialRequestUncheckedCreateNestedManyWithoutSiteInput = {
+  create?: Prisma.XOR<Prisma.MaterialRequestCreateWithoutSiteInput, Prisma.MaterialRequestUncheckedCreateWithoutSiteInput> | Prisma.MaterialRequestCreateWithoutSiteInput[] | Prisma.MaterialRequestUncheckedCreateWithoutSiteInput[]
+  connectOrCreate?: Prisma.MaterialRequestCreateOrConnectWithoutSiteInput | Prisma.MaterialRequestCreateOrConnectWithoutSiteInput[]
+  createMany?: Prisma.MaterialRequestCreateManySiteInputEnvelope
+  connect?: Prisma.MaterialRequestWhereUniqueInput | Prisma.MaterialRequestWhereUniqueInput[]
+}
+
+export type MaterialRequestUpdateManyWithoutSiteNestedInput = {
+  create?: Prisma.XOR<Prisma.MaterialRequestCreateWithoutSiteInput, Prisma.MaterialRequestUncheckedCreateWithoutSiteInput> | Prisma.MaterialRequestCreateWithoutSiteInput[] | Prisma.MaterialRequestUncheckedCreateWithoutSiteInput[]
+  connectOrCreate?: Prisma.MaterialRequestCreateOrConnectWithoutSiteInput | Prisma.MaterialRequestCreateOrConnectWithoutSiteInput[]
+  upsert?: Prisma.MaterialRequestUpsertWithWhereUniqueWithoutSiteInput | Prisma.MaterialRequestUpsertWithWhereUniqueWithoutSiteInput[]
+  createMany?: Prisma.MaterialRequestCreateManySiteInputEnvelope
+  set?: Prisma.MaterialRequestWhereUniqueInput | Prisma.MaterialRequestWhereUniqueInput[]
+  disconnect?: Prisma.MaterialRequestWhereUniqueInput | Prisma.MaterialRequestWhereUniqueInput[]
+  delete?: Prisma.MaterialRequestWhereUniqueInput | Prisma.MaterialRequestWhereUniqueInput[]
+  connect?: Prisma.MaterialRequestWhereUniqueInput | Prisma.MaterialRequestWhereUniqueInput[]
+  update?: Prisma.MaterialRequestUpdateWithWhereUniqueWithoutSiteInput | Prisma.MaterialRequestUpdateWithWhereUniqueWithoutSiteInput[]
+  updateMany?: Prisma.MaterialRequestUpdateManyWithWhereWithoutSiteInput | Prisma.MaterialRequestUpdateManyWithWhereWithoutSiteInput[]
+  deleteMany?: Prisma.MaterialRequestScalarWhereInput | Prisma.MaterialRequestScalarWhereInput[]
+}
+
+export type MaterialRequestUncheckedUpdateManyWithoutSiteNestedInput = {
+  create?: Prisma.XOR<Prisma.MaterialRequestCreateWithoutSiteInput, Prisma.MaterialRequestUncheckedCreateWithoutSiteInput> | Prisma.MaterialRequestCreateWithoutSiteInput[] | Prisma.MaterialRequestUncheckedCreateWithoutSiteInput[]
+  connectOrCreate?: Prisma.MaterialRequestCreateOrConnectWithoutSiteInput | Prisma.MaterialRequestCreateOrConnectWithoutSiteInput[]
+  upsert?: Prisma.MaterialRequestUpsertWithWhereUniqueWithoutSiteInput | Prisma.MaterialRequestUpsertWithWhereUniqueWithoutSiteInput[]
+  createMany?: Prisma.MaterialRequestCreateManySiteInputEnvelope
+  set?: Prisma.MaterialRequestWhereUniqueInput | Prisma.MaterialRequestWhereUniqueInput[]
+  disconnect?: Prisma.MaterialRequestWhereUniqueInput | Prisma.MaterialRequestWhereUniqueInput[]
+  delete?: Prisma.MaterialRequestWhereUniqueInput | Prisma.MaterialRequestWhereUniqueInput[]
+  connect?: Prisma.MaterialRequestWhereUniqueInput | Prisma.MaterialRequestWhereUniqueInput[]
+  update?: Prisma.MaterialRequestUpdateWithWhereUniqueWithoutSiteInput | Prisma.MaterialRequestUpdateWithWhereUniqueWithoutSiteInput[]
+  updateMany?: Prisma.MaterialRequestUpdateManyWithWhereWithoutSiteInput | Prisma.MaterialRequestUpdateManyWithWhereWithoutSiteInput[]
+  deleteMany?: Prisma.MaterialRequestScalarWhereInput | Prisma.MaterialRequestScalarWhereInput[]
+}
+
 export type EnumRequestStatusFieldUpdateOperationsInput = {
   set?: $Enums.RequestStatus
 }
@@ -554,6 +620,7 @@ export type MaterialRequestCreateWithoutSiteEngineerInput = {
   updatedAt?: Date | string
   block: Prisma.BlockCreateNestedOneWithoutMaterialRequestsInput
   items?: Prisma.MaterialRequestItemCreateNestedManyWithoutMaterialRequestInput
+  site?: Prisma.SiteCreateNestedOneWithoutMaterialRequestsInput
 }
 
 export type MaterialRequestUncheckedCreateWithoutSiteEngineerInput = {
@@ -566,6 +633,7 @@ export type MaterialRequestUncheckedCreateWithoutSiteEngineerInput = {
   smRemarks?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  siteId?: string | null
   items?: Prisma.MaterialRequestItemUncheckedCreateNestedManyWithoutMaterialRequestInput
 }
 
@@ -609,6 +677,7 @@ export type MaterialRequestScalarWhereInput = {
   smRemarks?: Prisma.StringNullableFilter<"MaterialRequest"> | string | null
   createdAt?: Prisma.DateTimeFilter<"MaterialRequest"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MaterialRequest"> | Date | string
+  siteId?: Prisma.StringNullableFilter<"MaterialRequest"> | string | null
 }
 
 export type MaterialRequestCreateWithoutBlockInput = {
@@ -622,6 +691,7 @@ export type MaterialRequestCreateWithoutBlockInput = {
   updatedAt?: Date | string
   siteEngineer: Prisma.UserCreateNestedOneWithoutMaterialRequestsInput
   items?: Prisma.MaterialRequestItemCreateNestedManyWithoutMaterialRequestInput
+  site?: Prisma.SiteCreateNestedOneWithoutMaterialRequestsInput
 }
 
 export type MaterialRequestUncheckedCreateWithoutBlockInput = {
@@ -634,6 +704,7 @@ export type MaterialRequestUncheckedCreateWithoutBlockInput = {
   smRemarks?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  siteId?: string | null
   items?: Prisma.MaterialRequestItemUncheckedCreateNestedManyWithoutMaterialRequestInput
 }
 
@@ -663,6 +734,60 @@ export type MaterialRequestUpdateManyWithWhereWithoutBlockInput = {
   data: Prisma.XOR<Prisma.MaterialRequestUpdateManyMutationInput, Prisma.MaterialRequestUncheckedUpdateManyWithoutBlockInput>
 }
 
+export type MaterialRequestCreateWithoutSiteInput = {
+  id?: string
+  status?: $Enums.RequestStatus
+  remarks?: string | null
+  bmRemarks?: string | null
+  dhRemarks?: string | null
+  smRemarks?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  siteEngineer: Prisma.UserCreateNestedOneWithoutMaterialRequestsInput
+  block: Prisma.BlockCreateNestedOneWithoutMaterialRequestsInput
+  items?: Prisma.MaterialRequestItemCreateNestedManyWithoutMaterialRequestInput
+}
+
+export type MaterialRequestUncheckedCreateWithoutSiteInput = {
+  id?: string
+  siteEngineerId: string
+  blockId: string
+  status?: $Enums.RequestStatus
+  remarks?: string | null
+  bmRemarks?: string | null
+  dhRemarks?: string | null
+  smRemarks?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  items?: Prisma.MaterialRequestItemUncheckedCreateNestedManyWithoutMaterialRequestInput
+}
+
+export type MaterialRequestCreateOrConnectWithoutSiteInput = {
+  where: Prisma.MaterialRequestWhereUniqueInput
+  create: Prisma.XOR<Prisma.MaterialRequestCreateWithoutSiteInput, Prisma.MaterialRequestUncheckedCreateWithoutSiteInput>
+}
+
+export type MaterialRequestCreateManySiteInputEnvelope = {
+  data: Prisma.MaterialRequestCreateManySiteInput | Prisma.MaterialRequestCreateManySiteInput[]
+  skipDuplicates?: boolean
+}
+
+export type MaterialRequestUpsertWithWhereUniqueWithoutSiteInput = {
+  where: Prisma.MaterialRequestWhereUniqueInput
+  update: Prisma.XOR<Prisma.MaterialRequestUpdateWithoutSiteInput, Prisma.MaterialRequestUncheckedUpdateWithoutSiteInput>
+  create: Prisma.XOR<Prisma.MaterialRequestCreateWithoutSiteInput, Prisma.MaterialRequestUncheckedCreateWithoutSiteInput>
+}
+
+export type MaterialRequestUpdateWithWhereUniqueWithoutSiteInput = {
+  where: Prisma.MaterialRequestWhereUniqueInput
+  data: Prisma.XOR<Prisma.MaterialRequestUpdateWithoutSiteInput, Prisma.MaterialRequestUncheckedUpdateWithoutSiteInput>
+}
+
+export type MaterialRequestUpdateManyWithWhereWithoutSiteInput = {
+  where: Prisma.MaterialRequestScalarWhereInput
+  data: Prisma.XOR<Prisma.MaterialRequestUpdateManyMutationInput, Prisma.MaterialRequestUncheckedUpdateManyWithoutSiteInput>
+}
+
 export type MaterialRequestCreateWithoutItemsInput = {
   id?: string
   status?: $Enums.RequestStatus
@@ -674,6 +799,7 @@ export type MaterialRequestCreateWithoutItemsInput = {
   updatedAt?: Date | string
   siteEngineer: Prisma.UserCreateNestedOneWithoutMaterialRequestsInput
   block: Prisma.BlockCreateNestedOneWithoutMaterialRequestsInput
+  site?: Prisma.SiteCreateNestedOneWithoutMaterialRequestsInput
 }
 
 export type MaterialRequestUncheckedCreateWithoutItemsInput = {
@@ -687,6 +813,7 @@ export type MaterialRequestUncheckedCreateWithoutItemsInput = {
   smRemarks?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  siteId?: string | null
 }
 
 export type MaterialRequestCreateOrConnectWithoutItemsInput = {
@@ -716,6 +843,7 @@ export type MaterialRequestUpdateWithoutItemsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   siteEngineer?: Prisma.UserUpdateOneRequiredWithoutMaterialRequestsNestedInput
   block?: Prisma.BlockUpdateOneRequiredWithoutMaterialRequestsNestedInput
+  site?: Prisma.SiteUpdateOneWithoutMaterialRequestsNestedInput
 }
 
 export type MaterialRequestUncheckedUpdateWithoutItemsInput = {
@@ -729,6 +857,7 @@ export type MaterialRequestUncheckedUpdateWithoutItemsInput = {
   smRemarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type MaterialRequestCreateManySiteEngineerInput = {
@@ -741,6 +870,7 @@ export type MaterialRequestCreateManySiteEngineerInput = {
   smRemarks?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  siteId?: string | null
 }
 
 export type MaterialRequestUpdateWithoutSiteEngineerInput = {
@@ -754,6 +884,7 @@ export type MaterialRequestUpdateWithoutSiteEngineerInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   block?: Prisma.BlockUpdateOneRequiredWithoutMaterialRequestsNestedInput
   items?: Prisma.MaterialRequestItemUpdateManyWithoutMaterialRequestNestedInput
+  site?: Prisma.SiteUpdateOneWithoutMaterialRequestsNestedInput
 }
 
 export type MaterialRequestUncheckedUpdateWithoutSiteEngineerInput = {
@@ -766,6 +897,7 @@ export type MaterialRequestUncheckedUpdateWithoutSiteEngineerInput = {
   smRemarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   items?: Prisma.MaterialRequestItemUncheckedUpdateManyWithoutMaterialRequestNestedInput
 }
 
@@ -779,6 +911,7 @@ export type MaterialRequestUncheckedUpdateManyWithoutSiteEngineerInput = {
   smRemarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type MaterialRequestCreateManyBlockInput = {
@@ -791,6 +924,7 @@ export type MaterialRequestCreateManyBlockInput = {
   smRemarks?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  siteId?: string | null
 }
 
 export type MaterialRequestUpdateWithoutBlockInput = {
@@ -804,6 +938,7 @@ export type MaterialRequestUpdateWithoutBlockInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   siteEngineer?: Prisma.UserUpdateOneRequiredWithoutMaterialRequestsNestedInput
   items?: Prisma.MaterialRequestItemUpdateManyWithoutMaterialRequestNestedInput
+  site?: Prisma.SiteUpdateOneWithoutMaterialRequestsNestedInput
 }
 
 export type MaterialRequestUncheckedUpdateWithoutBlockInput = {
@@ -816,12 +951,68 @@ export type MaterialRequestUncheckedUpdateWithoutBlockInput = {
   smRemarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   items?: Prisma.MaterialRequestItemUncheckedUpdateManyWithoutMaterialRequestNestedInput
 }
 
 export type MaterialRequestUncheckedUpdateManyWithoutBlockInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   siteEngineerId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+  remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bmRemarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dhRemarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smRemarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type MaterialRequestCreateManySiteInput = {
+  id?: string
+  siteEngineerId: string
+  blockId: string
+  status?: $Enums.RequestStatus
+  remarks?: string | null
+  bmRemarks?: string | null
+  dhRemarks?: string | null
+  smRemarks?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type MaterialRequestUpdateWithoutSiteInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+  remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bmRemarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dhRemarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smRemarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  siteEngineer?: Prisma.UserUpdateOneRequiredWithoutMaterialRequestsNestedInput
+  block?: Prisma.BlockUpdateOneRequiredWithoutMaterialRequestsNestedInput
+  items?: Prisma.MaterialRequestItemUpdateManyWithoutMaterialRequestNestedInput
+}
+
+export type MaterialRequestUncheckedUpdateWithoutSiteInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  siteEngineerId?: Prisma.StringFieldUpdateOperationsInput | string
+  blockId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+  remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bmRemarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dhRemarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smRemarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.MaterialRequestItemUncheckedUpdateManyWithoutMaterialRequestNestedInput
+}
+
+export type MaterialRequestUncheckedUpdateManyWithoutSiteInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  siteEngineerId?: Prisma.StringFieldUpdateOperationsInput | string
+  blockId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bmRemarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -873,9 +1064,11 @@ export type MaterialRequestSelect<ExtArgs extends runtime.Types.Extensions.Inter
   smRemarks?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  siteId?: boolean
   siteEngineer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   block?: boolean | Prisma.BlockDefaultArgs<ExtArgs>
   items?: boolean | Prisma.MaterialRequest$itemsArgs<ExtArgs>
+  site?: boolean | Prisma.MaterialRequest$siteArgs<ExtArgs>
   _count?: boolean | Prisma.MaterialRequestCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["materialRequest"]>
 
@@ -890,8 +1083,10 @@ export type MaterialRequestSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   smRemarks?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  siteId?: boolean
   siteEngineer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   block?: boolean | Prisma.BlockDefaultArgs<ExtArgs>
+  site?: boolean | Prisma.MaterialRequest$siteArgs<ExtArgs>
 }, ExtArgs["result"]["materialRequest"]>
 
 export type MaterialRequestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -905,8 +1100,10 @@ export type MaterialRequestSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   smRemarks?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  siteId?: boolean
   siteEngineer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   block?: boolean | Prisma.BlockDefaultArgs<ExtArgs>
+  site?: boolean | Prisma.MaterialRequest$siteArgs<ExtArgs>
 }, ExtArgs["result"]["materialRequest"]>
 
 export type MaterialRequestSelectScalar = {
@@ -920,22 +1117,26 @@ export type MaterialRequestSelectScalar = {
   smRemarks?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  siteId?: boolean
 }
 
-export type MaterialRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "siteEngineerId" | "blockId" | "status" | "remarks" | "bmRemarks" | "dhRemarks" | "smRemarks" | "createdAt" | "updatedAt", ExtArgs["result"]["materialRequest"]>
+export type MaterialRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "siteEngineerId" | "blockId" | "status" | "remarks" | "bmRemarks" | "dhRemarks" | "smRemarks" | "createdAt" | "updatedAt" | "siteId", ExtArgs["result"]["materialRequest"]>
 export type MaterialRequestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   siteEngineer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   block?: boolean | Prisma.BlockDefaultArgs<ExtArgs>
   items?: boolean | Prisma.MaterialRequest$itemsArgs<ExtArgs>
+  site?: boolean | Prisma.MaterialRequest$siteArgs<ExtArgs>
   _count?: boolean | Prisma.MaterialRequestCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MaterialRequestIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   siteEngineer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   block?: boolean | Prisma.BlockDefaultArgs<ExtArgs>
+  site?: boolean | Prisma.MaterialRequest$siteArgs<ExtArgs>
 }
 export type MaterialRequestIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   siteEngineer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   block?: boolean | Prisma.BlockDefaultArgs<ExtArgs>
+  site?: boolean | Prisma.MaterialRequest$siteArgs<ExtArgs>
 }
 
 export type $MaterialRequestPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -944,6 +1145,7 @@ export type $MaterialRequestPayload<ExtArgs extends runtime.Types.Extensions.Int
     siteEngineer: Prisma.$UserPayload<ExtArgs>
     block: Prisma.$BlockPayload<ExtArgs>
     items: Prisma.$MaterialRequestItemPayload<ExtArgs>[]
+    site: Prisma.$SitePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -956,6 +1158,7 @@ export type $MaterialRequestPayload<ExtArgs extends runtime.Types.Extensions.Int
     smRemarks: string | null
     createdAt: Date
     updatedAt: Date
+    siteId: string | null
   }, ExtArgs["result"]["materialRequest"]>
   composites: {}
 }
@@ -1353,6 +1556,7 @@ export interface Prisma__MaterialRequestClient<T, Null = never, ExtArgs extends 
   siteEngineer<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   block<T extends Prisma.BlockDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BlockDefaultArgs<ExtArgs>>): Prisma.Prisma__BlockClient<runtime.Types.Result.GetResult<Prisma.$BlockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   items<T extends Prisma.MaterialRequest$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MaterialRequest$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MaterialRequestItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  site<T extends Prisma.MaterialRequest$siteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MaterialRequest$siteArgs<ExtArgs>>): Prisma.Prisma__SiteClient<runtime.Types.Result.GetResult<Prisma.$SitePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1392,6 +1596,7 @@ export interface MaterialRequestFieldRefs {
   readonly smRemarks: Prisma.FieldRef<"MaterialRequest", 'String'>
   readonly createdAt: Prisma.FieldRef<"MaterialRequest", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"MaterialRequest", 'DateTime'>
+  readonly siteId: Prisma.FieldRef<"MaterialRequest", 'String'>
 }
     
 
@@ -1809,6 +2014,25 @@ export type MaterialRequest$itemsArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.MaterialRequestItemScalarFieldEnum | Prisma.MaterialRequestItemScalarFieldEnum[]
+}
+
+/**
+ * MaterialRequest.site
+ */
+export type MaterialRequest$siteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Site
+   */
+  select?: Prisma.SiteSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Site
+   */
+  omit?: Prisma.SiteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteInclude<ExtArgs> | null
+  where?: Prisma.SiteWhereInput
 }
 
 /**

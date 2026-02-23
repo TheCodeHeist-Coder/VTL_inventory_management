@@ -52,8 +52,10 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
+  State: 'State',
   District: 'District',
   Block: 'Block',
+  Site: 'Site',
   Inventory: 'Inventory',
   InventoryItem: 'InventoryItem',
   MaterialRequest: 'MaterialRequest',
@@ -89,10 +91,22 @@ export const UserScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   districtId: 'districtId',
-  blockId: 'blockId'
+  blockId: 'blockId',
+  siteId: 'siteId'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const StateScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  code: 'code',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type StateScalarFieldEnum = (typeof StateScalarFieldEnum)[keyof typeof StateScalarFieldEnum]
 
 
 export const DistrictScalarFieldEnum = {
@@ -100,7 +114,8 @@ export const DistrictScalarFieldEnum = {
   name: 'name',
   code: 'code',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  stateId: 'stateId'
 } as const
 
 export type DistrictScalarFieldEnum = (typeof DistrictScalarFieldEnum)[keyof typeof DistrictScalarFieldEnum]
@@ -116,6 +131,18 @@ export const BlockScalarFieldEnum = {
 } as const
 
 export type BlockScalarFieldEnum = (typeof BlockScalarFieldEnum)[keyof typeof BlockScalarFieldEnum]
+
+
+export const SiteScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  code: 'code',
+  blockId: 'blockId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SiteScalarFieldEnum = (typeof SiteScalarFieldEnum)[keyof typeof SiteScalarFieldEnum]
 
 
 export const InventoryScalarFieldEnum = {
@@ -152,7 +179,8 @@ export const MaterialRequestScalarFieldEnum = {
   dhRemarks: 'dhRemarks',
   smRemarks: 'smRemarks',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  siteId: 'siteId'
 } as const
 
 export type MaterialRequestScalarFieldEnum = (typeof MaterialRequestScalarFieldEnum)[keyof typeof MaterialRequestScalarFieldEnum]

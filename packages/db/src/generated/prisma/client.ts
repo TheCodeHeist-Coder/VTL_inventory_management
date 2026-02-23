@@ -45,6 +45,11 @@ export { Prisma }
  */
 export type User = Prisma.UserModel
 /**
+ * Model State
+ * 
+ */
+export type State = Prisma.StateModel
+/**
  * Model District
  * 
  */
@@ -54,6 +59,11 @@ export type District = Prisma.DistrictModel
  * 
  */
 export type Block = Prisma.BlockModel
+/**
+ * Model Site
+ * 
+ */
+export type Site = Prisma.SiteModel
 /**
  * Model Inventory
  * 

@@ -36,6 +36,7 @@ export type UserMinAggregateOutputType = {
   updatedAt: Date | null
   districtId: string | null
   blockId: string | null
+  siteId: string | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -50,6 +51,7 @@ export type UserMaxAggregateOutputType = {
   updatedAt: Date | null
   districtId: string | null
   blockId: string | null
+  siteId: string | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -64,6 +66,7 @@ export type UserCountAggregateOutputType = {
   updatedAt: number
   districtId: number
   blockId: number
+  siteId: number
   _all: number
 }
 
@@ -80,6 +83,7 @@ export type UserMinAggregateInputType = {
   updatedAt?: true
   districtId?: true
   blockId?: true
+  siteId?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -94,6 +98,7 @@ export type UserMaxAggregateInputType = {
   updatedAt?: true
   districtId?: true
   blockId?: true
+  siteId?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -108,6 +113,7 @@ export type UserCountAggregateInputType = {
   updatedAt?: true
   districtId?: true
   blockId?: true
+  siteId?: true
   _all?: true
 }
 
@@ -195,6 +201,7 @@ export type UserGroupByOutputType = {
   updatedAt: Date
   districtId: string | null
   blockId: string | null
+  siteId: string | null
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -230,8 +237,10 @@ export type UserWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   districtId?: Prisma.StringNullableFilter<"User"> | string | null
   blockId?: Prisma.StringNullableFilter<"User"> | string | null
+  siteId?: Prisma.StringNullableFilter<"User"> | string | null
   district?: Prisma.XOR<Prisma.DistrictNullableScalarRelationFilter, Prisma.DistrictWhereInput> | null
   block?: Prisma.XOR<Prisma.BlockNullableScalarRelationFilter, Prisma.BlockWhereInput> | null
+  site?: Prisma.XOR<Prisma.SiteNullableScalarRelationFilter, Prisma.SiteWhereInput> | null
   materialRequests?: Prisma.MaterialRequestListRelationFilter
   replenishRequests?: Prisma.ReplenishRequestListRelationFilter
 }
@@ -248,8 +257,10 @@ export type UserOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   districtId?: Prisma.SortOrderInput | Prisma.SortOrder
   blockId?: Prisma.SortOrderInput | Prisma.SortOrder
+  siteId?: Prisma.SortOrderInput | Prisma.SortOrder
   district?: Prisma.DistrictOrderByWithRelationInput
   block?: Prisma.BlockOrderByWithRelationInput
+  site?: Prisma.SiteOrderByWithRelationInput
   materialRequests?: Prisma.MaterialRequestOrderByRelationAggregateInput
   replenishRequests?: Prisma.ReplenishRequestOrderByRelationAggregateInput
 }
@@ -269,8 +280,10 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   districtId?: Prisma.StringNullableFilter<"User"> | string | null
   blockId?: Prisma.StringNullableFilter<"User"> | string | null
+  siteId?: Prisma.StringNullableFilter<"User"> | string | null
   district?: Prisma.XOR<Prisma.DistrictNullableScalarRelationFilter, Prisma.DistrictWhereInput> | null
   block?: Prisma.XOR<Prisma.BlockNullableScalarRelationFilter, Prisma.BlockWhereInput> | null
+  site?: Prisma.XOR<Prisma.SiteNullableScalarRelationFilter, Prisma.SiteWhereInput> | null
   materialRequests?: Prisma.MaterialRequestListRelationFilter
   replenishRequests?: Prisma.ReplenishRequestListRelationFilter
 }, "id" | "email">
@@ -287,6 +300,7 @@ export type UserOrderByWithAggregationInput = {
   updatedAt?: Prisma.SortOrder
   districtId?: Prisma.SortOrderInput | Prisma.SortOrder
   blockId?: Prisma.SortOrderInput | Prisma.SortOrder
+  siteId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -307,6 +321,7 @@ export type UserScalarWhereWithAggregatesInput = {
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   districtId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   blockId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  siteId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
 }
 
 export type UserCreateInput = {
@@ -321,6 +336,7 @@ export type UserCreateInput = {
   updatedAt?: Date | string
   district?: Prisma.DistrictCreateNestedOneWithoutUsersInput
   block?: Prisma.BlockCreateNestedOneWithoutUsersInput
+  site?: Prisma.SiteCreateNestedOneWithoutUsersInput
   materialRequests?: Prisma.MaterialRequestCreateNestedManyWithoutSiteEngineerInput
   replenishRequests?: Prisma.ReplenishRequestCreateNestedManyWithoutStoreManagerInput
 }
@@ -337,6 +353,7 @@ export type UserUncheckedCreateInput = {
   updatedAt?: Date | string
   districtId?: string | null
   blockId?: string | null
+  siteId?: string | null
   materialRequests?: Prisma.MaterialRequestUncheckedCreateNestedManyWithoutSiteEngineerInput
   replenishRequests?: Prisma.ReplenishRequestUncheckedCreateNestedManyWithoutStoreManagerInput
 }
@@ -353,6 +370,7 @@ export type UserUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   district?: Prisma.DistrictUpdateOneWithoutUsersNestedInput
   block?: Prisma.BlockUpdateOneWithoutUsersNestedInput
+  site?: Prisma.SiteUpdateOneWithoutUsersNestedInput
   materialRequests?: Prisma.MaterialRequestUpdateManyWithoutSiteEngineerNestedInput
   replenishRequests?: Prisma.ReplenishRequestUpdateManyWithoutStoreManagerNestedInput
 }
@@ -369,6 +387,7 @@ export type UserUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blockId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   materialRequests?: Prisma.MaterialRequestUncheckedUpdateManyWithoutSiteEngineerNestedInput
   replenishRequests?: Prisma.ReplenishRequestUncheckedUpdateManyWithoutStoreManagerNestedInput
 }
@@ -385,6 +404,7 @@ export type UserCreateManyInput = {
   updatedAt?: Date | string
   districtId?: string | null
   blockId?: string | null
+  siteId?: string | null
 }
 
 export type UserUpdateManyMutationInput = {
@@ -411,6 +431,7 @@ export type UserUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blockId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -425,6 +446,7 @@ export type UserCountOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   districtId?: Prisma.SortOrder
   blockId?: Prisma.SortOrder
+  siteId?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -439,6 +461,7 @@ export type UserMaxOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   districtId?: Prisma.SortOrder
   blockId?: Prisma.SortOrder
+  siteId?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -453,6 +476,7 @@ export type UserMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   districtId?: Prisma.SortOrder
   blockId?: Prisma.SortOrder
+  siteId?: Prisma.SortOrder
 }
 
 export type UserListRelationFilter = {
@@ -574,6 +598,48 @@ export type UserUncheckedUpdateManyWithoutBlockNestedInput = {
   deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
 }
 
+export type UserCreateNestedManyWithoutSiteInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSiteInput, Prisma.UserUncheckedCreateWithoutSiteInput> | Prisma.UserCreateWithoutSiteInput[] | Prisma.UserUncheckedCreateWithoutSiteInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSiteInput | Prisma.UserCreateOrConnectWithoutSiteInput[]
+  createMany?: Prisma.UserCreateManySiteInputEnvelope
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+}
+
+export type UserUncheckedCreateNestedManyWithoutSiteInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSiteInput, Prisma.UserUncheckedCreateWithoutSiteInput> | Prisma.UserCreateWithoutSiteInput[] | Prisma.UserUncheckedCreateWithoutSiteInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSiteInput | Prisma.UserCreateOrConnectWithoutSiteInput[]
+  createMany?: Prisma.UserCreateManySiteInputEnvelope
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+}
+
+export type UserUpdateManyWithoutSiteNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSiteInput, Prisma.UserUncheckedCreateWithoutSiteInput> | Prisma.UserCreateWithoutSiteInput[] | Prisma.UserUncheckedCreateWithoutSiteInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSiteInput | Prisma.UserCreateOrConnectWithoutSiteInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutSiteInput | Prisma.UserUpsertWithWhereUniqueWithoutSiteInput[]
+  createMany?: Prisma.UserCreateManySiteInputEnvelope
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutSiteInput | Prisma.UserUpdateWithWhereUniqueWithoutSiteInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutSiteInput | Prisma.UserUpdateManyWithWhereWithoutSiteInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+}
+
+export type UserUncheckedUpdateManyWithoutSiteNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSiteInput, Prisma.UserUncheckedCreateWithoutSiteInput> | Prisma.UserCreateWithoutSiteInput[] | Prisma.UserUncheckedCreateWithoutSiteInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSiteInput | Prisma.UserCreateOrConnectWithoutSiteInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutSiteInput | Prisma.UserUpsertWithWhereUniqueWithoutSiteInput[]
+  createMany?: Prisma.UserCreateManySiteInputEnvelope
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutSiteInput | Prisma.UserUpdateWithWhereUniqueWithoutSiteInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutSiteInput | Prisma.UserUpdateManyWithWhereWithoutSiteInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+}
+
 export type UserCreateNestedOneWithoutMaterialRequestsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutMaterialRequestsInput, Prisma.UserUncheckedCreateWithoutMaterialRequestsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutMaterialRequestsInput
@@ -613,6 +679,7 @@ export type UserCreateWithoutDistrictInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   block?: Prisma.BlockCreateNestedOneWithoutUsersInput
+  site?: Prisma.SiteCreateNestedOneWithoutUsersInput
   materialRequests?: Prisma.MaterialRequestCreateNestedManyWithoutSiteEngineerInput
   replenishRequests?: Prisma.ReplenishRequestCreateNestedManyWithoutStoreManagerInput
 }
@@ -628,6 +695,7 @@ export type UserUncheckedCreateWithoutDistrictInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   blockId?: string | null
+  siteId?: string | null
   materialRequests?: Prisma.MaterialRequestUncheckedCreateNestedManyWithoutSiteEngineerInput
   replenishRequests?: Prisma.ReplenishRequestUncheckedCreateNestedManyWithoutStoreManagerInput
 }
@@ -673,6 +741,7 @@ export type UserScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   districtId?: Prisma.StringNullableFilter<"User"> | string | null
   blockId?: Prisma.StringNullableFilter<"User"> | string | null
+  siteId?: Prisma.StringNullableFilter<"User"> | string | null
 }
 
 export type UserCreateWithoutBlockInput = {
@@ -686,6 +755,7 @@ export type UserCreateWithoutBlockInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   district?: Prisma.DistrictCreateNestedOneWithoutUsersInput
+  site?: Prisma.SiteCreateNestedOneWithoutUsersInput
   materialRequests?: Prisma.MaterialRequestCreateNestedManyWithoutSiteEngineerInput
   replenishRequests?: Prisma.ReplenishRequestCreateNestedManyWithoutStoreManagerInput
 }
@@ -701,6 +771,7 @@ export type UserUncheckedCreateWithoutBlockInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   districtId?: string | null
+  siteId?: string | null
   materialRequests?: Prisma.MaterialRequestUncheckedCreateNestedManyWithoutSiteEngineerInput
   replenishRequests?: Prisma.ReplenishRequestUncheckedCreateNestedManyWithoutStoreManagerInput
 }
@@ -731,6 +802,64 @@ export type UserUpdateManyWithWhereWithoutBlockInput = {
   data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutBlockInput>
 }
 
+export type UserCreateWithoutSiteInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  phone?: string | null
+  role: $Enums.Role
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  district?: Prisma.DistrictCreateNestedOneWithoutUsersInput
+  block?: Prisma.BlockCreateNestedOneWithoutUsersInput
+  materialRequests?: Prisma.MaterialRequestCreateNestedManyWithoutSiteEngineerInput
+  replenishRequests?: Prisma.ReplenishRequestCreateNestedManyWithoutStoreManagerInput
+}
+
+export type UserUncheckedCreateWithoutSiteInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  phone?: string | null
+  role: $Enums.Role
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  districtId?: string | null
+  blockId?: string | null
+  materialRequests?: Prisma.MaterialRequestUncheckedCreateNestedManyWithoutSiteEngineerInput
+  replenishRequests?: Prisma.ReplenishRequestUncheckedCreateNestedManyWithoutStoreManagerInput
+}
+
+export type UserCreateOrConnectWithoutSiteInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSiteInput, Prisma.UserUncheckedCreateWithoutSiteInput>
+}
+
+export type UserCreateManySiteInputEnvelope = {
+  data: Prisma.UserCreateManySiteInput | Prisma.UserCreateManySiteInput[]
+  skipDuplicates?: boolean
+}
+
+export type UserUpsertWithWhereUniqueWithoutSiteInput = {
+  where: Prisma.UserWhereUniqueInput
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSiteInput, Prisma.UserUncheckedUpdateWithoutSiteInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSiteInput, Prisma.UserUncheckedCreateWithoutSiteInput>
+}
+
+export type UserUpdateWithWhereUniqueWithoutSiteInput = {
+  where: Prisma.UserWhereUniqueInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSiteInput, Prisma.UserUncheckedUpdateWithoutSiteInput>
+}
+
+export type UserUpdateManyWithWhereWithoutSiteInput = {
+  where: Prisma.UserScalarWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutSiteInput>
+}
+
 export type UserCreateWithoutMaterialRequestsInput = {
   id?: string
   name: string
@@ -743,6 +872,7 @@ export type UserCreateWithoutMaterialRequestsInput = {
   updatedAt?: Date | string
   district?: Prisma.DistrictCreateNestedOneWithoutUsersInput
   block?: Prisma.BlockCreateNestedOneWithoutUsersInput
+  site?: Prisma.SiteCreateNestedOneWithoutUsersInput
   replenishRequests?: Prisma.ReplenishRequestCreateNestedManyWithoutStoreManagerInput
 }
 
@@ -758,6 +888,7 @@ export type UserUncheckedCreateWithoutMaterialRequestsInput = {
   updatedAt?: Date | string
   districtId?: string | null
   blockId?: string | null
+  siteId?: string | null
   replenishRequests?: Prisma.ReplenishRequestUncheckedCreateNestedManyWithoutStoreManagerInput
 }
 
@@ -789,6 +920,7 @@ export type UserUpdateWithoutMaterialRequestsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   district?: Prisma.DistrictUpdateOneWithoutUsersNestedInput
   block?: Prisma.BlockUpdateOneWithoutUsersNestedInput
+  site?: Prisma.SiteUpdateOneWithoutUsersNestedInput
   replenishRequests?: Prisma.ReplenishRequestUpdateManyWithoutStoreManagerNestedInput
 }
 
@@ -804,6 +936,7 @@ export type UserUncheckedUpdateWithoutMaterialRequestsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blockId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   replenishRequests?: Prisma.ReplenishRequestUncheckedUpdateManyWithoutStoreManagerNestedInput
 }
 
@@ -819,6 +952,7 @@ export type UserCreateWithoutReplenishRequestsInput = {
   updatedAt?: Date | string
   district?: Prisma.DistrictCreateNestedOneWithoutUsersInput
   block?: Prisma.BlockCreateNestedOneWithoutUsersInput
+  site?: Prisma.SiteCreateNestedOneWithoutUsersInput
   materialRequests?: Prisma.MaterialRequestCreateNestedManyWithoutSiteEngineerInput
 }
 
@@ -834,6 +968,7 @@ export type UserUncheckedCreateWithoutReplenishRequestsInput = {
   updatedAt?: Date | string
   districtId?: string | null
   blockId?: string | null
+  siteId?: string | null
   materialRequests?: Prisma.MaterialRequestUncheckedCreateNestedManyWithoutSiteEngineerInput
 }
 
@@ -865,6 +1000,7 @@ export type UserUpdateWithoutReplenishRequestsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   district?: Prisma.DistrictUpdateOneWithoutUsersNestedInput
   block?: Prisma.BlockUpdateOneWithoutUsersNestedInput
+  site?: Prisma.SiteUpdateOneWithoutUsersNestedInput
   materialRequests?: Prisma.MaterialRequestUpdateManyWithoutSiteEngineerNestedInput
 }
 
@@ -880,6 +1016,7 @@ export type UserUncheckedUpdateWithoutReplenishRequestsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blockId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   materialRequests?: Prisma.MaterialRequestUncheckedUpdateManyWithoutSiteEngineerNestedInput
 }
 
@@ -894,6 +1031,7 @@ export type UserCreateManyDistrictInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   blockId?: string | null
+  siteId?: string | null
 }
 
 export type UserUpdateWithoutDistrictInput = {
@@ -907,6 +1045,7 @@ export type UserUpdateWithoutDistrictInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   block?: Prisma.BlockUpdateOneWithoutUsersNestedInput
+  site?: Prisma.SiteUpdateOneWithoutUsersNestedInput
   materialRequests?: Prisma.MaterialRequestUpdateManyWithoutSiteEngineerNestedInput
   replenishRequests?: Prisma.ReplenishRequestUpdateManyWithoutStoreManagerNestedInput
 }
@@ -922,6 +1061,7 @@ export type UserUncheckedUpdateWithoutDistrictInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   blockId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   materialRequests?: Prisma.MaterialRequestUncheckedUpdateManyWithoutSiteEngineerNestedInput
   replenishRequests?: Prisma.ReplenishRequestUncheckedUpdateManyWithoutStoreManagerNestedInput
 }
@@ -937,6 +1077,7 @@ export type UserUncheckedUpdateManyWithoutDistrictInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   blockId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserCreateManyBlockInput = {
@@ -950,6 +1091,7 @@ export type UserCreateManyBlockInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   districtId?: string | null
+  siteId?: string | null
 }
 
 export type UserUpdateWithoutBlockInput = {
@@ -963,6 +1105,7 @@ export type UserUpdateWithoutBlockInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   district?: Prisma.DistrictUpdateOneWithoutUsersNestedInput
+  site?: Prisma.SiteUpdateOneWithoutUsersNestedInput
   materialRequests?: Prisma.MaterialRequestUpdateManyWithoutSiteEngineerNestedInput
   replenishRequests?: Prisma.ReplenishRequestUpdateManyWithoutStoreManagerNestedInput
 }
@@ -978,6 +1121,7 @@ export type UserUncheckedUpdateWithoutBlockInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   materialRequests?: Prisma.MaterialRequestUncheckedUpdateManyWithoutSiteEngineerNestedInput
   replenishRequests?: Prisma.ReplenishRequestUncheckedUpdateManyWithoutStoreManagerNestedInput
 }
@@ -993,6 +1137,67 @@ export type UserUncheckedUpdateManyWithoutBlockInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type UserCreateManySiteInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  phone?: string | null
+  role: $Enums.Role
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  districtId?: string | null
+  blockId?: string | null
+}
+
+export type UserUpdateWithoutSiteInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  district?: Prisma.DistrictUpdateOneWithoutUsersNestedInput
+  block?: Prisma.BlockUpdateOneWithoutUsersNestedInput
+  materialRequests?: Prisma.MaterialRequestUpdateManyWithoutSiteEngineerNestedInput
+  replenishRequests?: Prisma.ReplenishRequestUpdateManyWithoutStoreManagerNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSiteInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  materialRequests?: Prisma.MaterialRequestUncheckedUpdateManyWithoutSiteEngineerNestedInput
+  replenishRequests?: Prisma.ReplenishRequestUncheckedUpdateManyWithoutStoreManagerNestedInput
+}
+
+export type UserUncheckedUpdateManyWithoutSiteInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1047,8 +1252,10 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   districtId?: boolean
   blockId?: boolean
+  siteId?: boolean
   district?: boolean | Prisma.User$districtArgs<ExtArgs>
   block?: boolean | Prisma.User$blockArgs<ExtArgs>
+  site?: boolean | Prisma.User$siteArgs<ExtArgs>
   materialRequests?: boolean | Prisma.User$materialRequestsArgs<ExtArgs>
   replenishRequests?: boolean | Prisma.User$replenishRequestsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1066,8 +1273,10 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   updatedAt?: boolean
   districtId?: boolean
   blockId?: boolean
+  siteId?: boolean
   district?: boolean | Prisma.User$districtArgs<ExtArgs>
   block?: boolean | Prisma.User$blockArgs<ExtArgs>
+  site?: boolean | Prisma.User$siteArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1082,8 +1291,10 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   updatedAt?: boolean
   districtId?: boolean
   blockId?: boolean
+  siteId?: boolean
   district?: boolean | Prisma.User$districtArgs<ExtArgs>
   block?: boolean | Prisma.User$blockArgs<ExtArgs>
+  site?: boolean | Prisma.User$siteArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -1098,12 +1309,14 @@ export type UserSelectScalar = {
   updatedAt?: boolean
   districtId?: boolean
   blockId?: boolean
+  siteId?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password" | "phone" | "role" | "active" | "createdAt" | "updatedAt" | "districtId" | "blockId", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password" | "phone" | "role" | "active" | "createdAt" | "updatedAt" | "districtId" | "blockId" | "siteId", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   district?: boolean | Prisma.User$districtArgs<ExtArgs>
   block?: boolean | Prisma.User$blockArgs<ExtArgs>
+  site?: boolean | Prisma.User$siteArgs<ExtArgs>
   materialRequests?: boolean | Prisma.User$materialRequestsArgs<ExtArgs>
   replenishRequests?: boolean | Prisma.User$replenishRequestsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1111,10 +1324,12 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   district?: boolean | Prisma.User$districtArgs<ExtArgs>
   block?: boolean | Prisma.User$blockArgs<ExtArgs>
+  site?: boolean | Prisma.User$siteArgs<ExtArgs>
 }
 export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   district?: boolean | Prisma.User$districtArgs<ExtArgs>
   block?: boolean | Prisma.User$blockArgs<ExtArgs>
+  site?: boolean | Prisma.User$siteArgs<ExtArgs>
 }
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1122,6 +1337,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     district: Prisma.$DistrictPayload<ExtArgs> | null
     block: Prisma.$BlockPayload<ExtArgs> | null
+    site: Prisma.$SitePayload<ExtArgs> | null
     materialRequests: Prisma.$MaterialRequestPayload<ExtArgs>[]
     replenishRequests: Prisma.$ReplenishRequestPayload<ExtArgs>[]
   }
@@ -1137,6 +1353,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     updatedAt: Date
     districtId: string | null
     blockId: string | null
+    siteId: string | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1533,6 +1750,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   district<T extends Prisma.User$districtArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$districtArgs<ExtArgs>>): Prisma.Prisma__DistrictClient<runtime.Types.Result.GetResult<Prisma.$DistrictPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   block<T extends Prisma.User$blockArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$blockArgs<ExtArgs>>): Prisma.Prisma__BlockClient<runtime.Types.Result.GetResult<Prisma.$BlockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  site<T extends Prisma.User$siteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$siteArgs<ExtArgs>>): Prisma.Prisma__SiteClient<runtime.Types.Result.GetResult<Prisma.$SitePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   materialRequests<T extends Prisma.User$materialRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$materialRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MaterialRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   replenishRequests<T extends Prisma.User$replenishRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$replenishRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReplenishRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1575,6 +1793,7 @@ export interface UserFieldRefs {
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly districtId: Prisma.FieldRef<"User", 'String'>
   readonly blockId: Prisma.FieldRef<"User", 'String'>
+  readonly siteId: Prisma.FieldRef<"User", 'String'>
 }
     
 
@@ -2006,6 +2225,25 @@ export type User$blockArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   include?: Prisma.BlockInclude<ExtArgs> | null
   where?: Prisma.BlockWhereInput
+}
+
+/**
+ * User.site
+ */
+export type User$siteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Site
+   */
+  select?: Prisma.SiteSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Site
+   */
+  omit?: Prisma.SiteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteInclude<ExtArgs> | null
+  where?: Prisma.SiteWhereInput
 }
 
 /**

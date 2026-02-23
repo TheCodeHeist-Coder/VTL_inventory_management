@@ -194,6 +194,7 @@ export type BlockWhereInput = {
   inventory?: Prisma.XOR<Prisma.InventoryNullableScalarRelationFilter, Prisma.InventoryWhereInput> | null
   users?: Prisma.UserListRelationFilter
   materialRequests?: Prisma.MaterialRequestListRelationFilter
+  sites?: Prisma.SiteListRelationFilter
 }
 
 export type BlockOrderByWithRelationInput = {
@@ -207,6 +208,7 @@ export type BlockOrderByWithRelationInput = {
   inventory?: Prisma.InventoryOrderByWithRelationInput
   users?: Prisma.UserOrderByRelationAggregateInput
   materialRequests?: Prisma.MaterialRequestOrderByRelationAggregateInput
+  sites?: Prisma.SiteOrderByRelationAggregateInput
 }
 
 export type BlockWhereUniqueInput = Prisma.AtLeast<{
@@ -223,6 +225,7 @@ export type BlockWhereUniqueInput = Prisma.AtLeast<{
   inventory?: Prisma.XOR<Prisma.InventoryNullableScalarRelationFilter, Prisma.InventoryWhereInput> | null
   users?: Prisma.UserListRelationFilter
   materialRequests?: Prisma.MaterialRequestListRelationFilter
+  sites?: Prisma.SiteListRelationFilter
 }, "id" | "code">
 
 export type BlockOrderByWithAggregationInput = {
@@ -259,6 +262,7 @@ export type BlockCreateInput = {
   inventory?: Prisma.InventoryCreateNestedOneWithoutBlockInput
   users?: Prisma.UserCreateNestedManyWithoutBlockInput
   materialRequests?: Prisma.MaterialRequestCreateNestedManyWithoutBlockInput
+  sites?: Prisma.SiteCreateNestedManyWithoutBlockInput
 }
 
 export type BlockUncheckedCreateInput = {
@@ -271,6 +275,7 @@ export type BlockUncheckedCreateInput = {
   inventory?: Prisma.InventoryUncheckedCreateNestedOneWithoutBlockInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutBlockInput
   materialRequests?: Prisma.MaterialRequestUncheckedCreateNestedManyWithoutBlockInput
+  sites?: Prisma.SiteUncheckedCreateNestedManyWithoutBlockInput
 }
 
 export type BlockUpdateInput = {
@@ -283,6 +288,7 @@ export type BlockUpdateInput = {
   inventory?: Prisma.InventoryUpdateOneWithoutBlockNestedInput
   users?: Prisma.UserUpdateManyWithoutBlockNestedInput
   materialRequests?: Prisma.MaterialRequestUpdateManyWithoutBlockNestedInput
+  sites?: Prisma.SiteUpdateManyWithoutBlockNestedInput
 }
 
 export type BlockUncheckedUpdateInput = {
@@ -295,6 +301,7 @@ export type BlockUncheckedUpdateInput = {
   inventory?: Prisma.InventoryUncheckedUpdateOneWithoutBlockNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutBlockNestedInput
   materialRequests?: Prisma.MaterialRequestUncheckedUpdateManyWithoutBlockNestedInput
+  sites?: Prisma.SiteUncheckedUpdateManyWithoutBlockNestedInput
 }
 
 export type BlockCreateManyInput = {
@@ -428,6 +435,20 @@ export type BlockUncheckedUpdateManyWithoutDistrictNestedInput = {
   deleteMany?: Prisma.BlockScalarWhereInput | Prisma.BlockScalarWhereInput[]
 }
 
+export type BlockCreateNestedOneWithoutSitesInput = {
+  create?: Prisma.XOR<Prisma.BlockCreateWithoutSitesInput, Prisma.BlockUncheckedCreateWithoutSitesInput>
+  connectOrCreate?: Prisma.BlockCreateOrConnectWithoutSitesInput
+  connect?: Prisma.BlockWhereUniqueInput
+}
+
+export type BlockUpdateOneRequiredWithoutSitesNestedInput = {
+  create?: Prisma.XOR<Prisma.BlockCreateWithoutSitesInput, Prisma.BlockUncheckedCreateWithoutSitesInput>
+  connectOrCreate?: Prisma.BlockCreateOrConnectWithoutSitesInput
+  upsert?: Prisma.BlockUpsertWithoutSitesInput
+  connect?: Prisma.BlockWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BlockUpdateToOneWithWhereWithoutSitesInput, Prisma.BlockUpdateWithoutSitesInput>, Prisma.BlockUncheckedUpdateWithoutSitesInput>
+}
+
 export type BlockCreateNestedOneWithoutInventoryInput = {
   create?: Prisma.XOR<Prisma.BlockCreateWithoutInventoryInput, Prisma.BlockUncheckedCreateWithoutInventoryInput>
   connectOrCreate?: Prisma.BlockCreateOrConnectWithoutInventoryInput
@@ -465,6 +486,7 @@ export type BlockCreateWithoutUsersInput = {
   district: Prisma.DistrictCreateNestedOneWithoutBlocksInput
   inventory?: Prisma.InventoryCreateNestedOneWithoutBlockInput
   materialRequests?: Prisma.MaterialRequestCreateNestedManyWithoutBlockInput
+  sites?: Prisma.SiteCreateNestedManyWithoutBlockInput
 }
 
 export type BlockUncheckedCreateWithoutUsersInput = {
@@ -476,6 +498,7 @@ export type BlockUncheckedCreateWithoutUsersInput = {
   updatedAt?: Date | string
   inventory?: Prisma.InventoryUncheckedCreateNestedOneWithoutBlockInput
   materialRequests?: Prisma.MaterialRequestUncheckedCreateNestedManyWithoutBlockInput
+  sites?: Prisma.SiteUncheckedCreateNestedManyWithoutBlockInput
 }
 
 export type BlockCreateOrConnectWithoutUsersInput = {
@@ -503,6 +526,7 @@ export type BlockUpdateWithoutUsersInput = {
   district?: Prisma.DistrictUpdateOneRequiredWithoutBlocksNestedInput
   inventory?: Prisma.InventoryUpdateOneWithoutBlockNestedInput
   materialRequests?: Prisma.MaterialRequestUpdateManyWithoutBlockNestedInput
+  sites?: Prisma.SiteUpdateManyWithoutBlockNestedInput
 }
 
 export type BlockUncheckedUpdateWithoutUsersInput = {
@@ -514,6 +538,7 @@ export type BlockUncheckedUpdateWithoutUsersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventory?: Prisma.InventoryUncheckedUpdateOneWithoutBlockNestedInput
   materialRequests?: Prisma.MaterialRequestUncheckedUpdateManyWithoutBlockNestedInput
+  sites?: Prisma.SiteUncheckedUpdateManyWithoutBlockNestedInput
 }
 
 export type BlockCreateWithoutDistrictInput = {
@@ -525,6 +550,7 @@ export type BlockCreateWithoutDistrictInput = {
   inventory?: Prisma.InventoryCreateNestedOneWithoutBlockInput
   users?: Prisma.UserCreateNestedManyWithoutBlockInput
   materialRequests?: Prisma.MaterialRequestCreateNestedManyWithoutBlockInput
+  sites?: Prisma.SiteCreateNestedManyWithoutBlockInput
 }
 
 export type BlockUncheckedCreateWithoutDistrictInput = {
@@ -536,6 +562,7 @@ export type BlockUncheckedCreateWithoutDistrictInput = {
   inventory?: Prisma.InventoryUncheckedCreateNestedOneWithoutBlockInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutBlockInput
   materialRequests?: Prisma.MaterialRequestUncheckedCreateNestedManyWithoutBlockInput
+  sites?: Prisma.SiteUncheckedCreateNestedManyWithoutBlockInput
 }
 
 export type BlockCreateOrConnectWithoutDistrictInput = {
@@ -576,6 +603,70 @@ export type BlockScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Block"> | Date | string
 }
 
+export type BlockCreateWithoutSitesInput = {
+  id?: string
+  name: string
+  code: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  district: Prisma.DistrictCreateNestedOneWithoutBlocksInput
+  inventory?: Prisma.InventoryCreateNestedOneWithoutBlockInput
+  users?: Prisma.UserCreateNestedManyWithoutBlockInput
+  materialRequests?: Prisma.MaterialRequestCreateNestedManyWithoutBlockInput
+}
+
+export type BlockUncheckedCreateWithoutSitesInput = {
+  id?: string
+  name: string
+  code: string
+  districtId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  inventory?: Prisma.InventoryUncheckedCreateNestedOneWithoutBlockInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutBlockInput
+  materialRequests?: Prisma.MaterialRequestUncheckedCreateNestedManyWithoutBlockInput
+}
+
+export type BlockCreateOrConnectWithoutSitesInput = {
+  where: Prisma.BlockWhereUniqueInput
+  create: Prisma.XOR<Prisma.BlockCreateWithoutSitesInput, Prisma.BlockUncheckedCreateWithoutSitesInput>
+}
+
+export type BlockUpsertWithoutSitesInput = {
+  update: Prisma.XOR<Prisma.BlockUpdateWithoutSitesInput, Prisma.BlockUncheckedUpdateWithoutSitesInput>
+  create: Prisma.XOR<Prisma.BlockCreateWithoutSitesInput, Prisma.BlockUncheckedCreateWithoutSitesInput>
+  where?: Prisma.BlockWhereInput
+}
+
+export type BlockUpdateToOneWithWhereWithoutSitesInput = {
+  where?: Prisma.BlockWhereInput
+  data: Prisma.XOR<Prisma.BlockUpdateWithoutSitesInput, Prisma.BlockUncheckedUpdateWithoutSitesInput>
+}
+
+export type BlockUpdateWithoutSitesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  district?: Prisma.DistrictUpdateOneRequiredWithoutBlocksNestedInput
+  inventory?: Prisma.InventoryUpdateOneWithoutBlockNestedInput
+  users?: Prisma.UserUpdateManyWithoutBlockNestedInput
+  materialRequests?: Prisma.MaterialRequestUpdateManyWithoutBlockNestedInput
+}
+
+export type BlockUncheckedUpdateWithoutSitesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  districtId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventory?: Prisma.InventoryUncheckedUpdateOneWithoutBlockNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutBlockNestedInput
+  materialRequests?: Prisma.MaterialRequestUncheckedUpdateManyWithoutBlockNestedInput
+}
+
 export type BlockCreateWithoutInventoryInput = {
   id?: string
   name: string
@@ -585,6 +676,7 @@ export type BlockCreateWithoutInventoryInput = {
   district: Prisma.DistrictCreateNestedOneWithoutBlocksInput
   users?: Prisma.UserCreateNestedManyWithoutBlockInput
   materialRequests?: Prisma.MaterialRequestCreateNestedManyWithoutBlockInput
+  sites?: Prisma.SiteCreateNestedManyWithoutBlockInput
 }
 
 export type BlockUncheckedCreateWithoutInventoryInput = {
@@ -596,6 +688,7 @@ export type BlockUncheckedCreateWithoutInventoryInput = {
   updatedAt?: Date | string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutBlockInput
   materialRequests?: Prisma.MaterialRequestUncheckedCreateNestedManyWithoutBlockInput
+  sites?: Prisma.SiteUncheckedCreateNestedManyWithoutBlockInput
 }
 
 export type BlockCreateOrConnectWithoutInventoryInput = {
@@ -623,6 +716,7 @@ export type BlockUpdateWithoutInventoryInput = {
   district?: Prisma.DistrictUpdateOneRequiredWithoutBlocksNestedInput
   users?: Prisma.UserUpdateManyWithoutBlockNestedInput
   materialRequests?: Prisma.MaterialRequestUpdateManyWithoutBlockNestedInput
+  sites?: Prisma.SiteUpdateManyWithoutBlockNestedInput
 }
 
 export type BlockUncheckedUpdateWithoutInventoryInput = {
@@ -634,6 +728,7 @@ export type BlockUncheckedUpdateWithoutInventoryInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUncheckedUpdateManyWithoutBlockNestedInput
   materialRequests?: Prisma.MaterialRequestUncheckedUpdateManyWithoutBlockNestedInput
+  sites?: Prisma.SiteUncheckedUpdateManyWithoutBlockNestedInput
 }
 
 export type BlockCreateWithoutMaterialRequestsInput = {
@@ -645,6 +740,7 @@ export type BlockCreateWithoutMaterialRequestsInput = {
   district: Prisma.DistrictCreateNestedOneWithoutBlocksInput
   inventory?: Prisma.InventoryCreateNestedOneWithoutBlockInput
   users?: Prisma.UserCreateNestedManyWithoutBlockInput
+  sites?: Prisma.SiteCreateNestedManyWithoutBlockInput
 }
 
 export type BlockUncheckedCreateWithoutMaterialRequestsInput = {
@@ -656,6 +752,7 @@ export type BlockUncheckedCreateWithoutMaterialRequestsInput = {
   updatedAt?: Date | string
   inventory?: Prisma.InventoryUncheckedCreateNestedOneWithoutBlockInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutBlockInput
+  sites?: Prisma.SiteUncheckedCreateNestedManyWithoutBlockInput
 }
 
 export type BlockCreateOrConnectWithoutMaterialRequestsInput = {
@@ -683,6 +780,7 @@ export type BlockUpdateWithoutMaterialRequestsInput = {
   district?: Prisma.DistrictUpdateOneRequiredWithoutBlocksNestedInput
   inventory?: Prisma.InventoryUpdateOneWithoutBlockNestedInput
   users?: Prisma.UserUpdateManyWithoutBlockNestedInput
+  sites?: Prisma.SiteUpdateManyWithoutBlockNestedInput
 }
 
 export type BlockUncheckedUpdateWithoutMaterialRequestsInput = {
@@ -694,6 +792,7 @@ export type BlockUncheckedUpdateWithoutMaterialRequestsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventory?: Prisma.InventoryUncheckedUpdateOneWithoutBlockNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutBlockNestedInput
+  sites?: Prisma.SiteUncheckedUpdateManyWithoutBlockNestedInput
 }
 
 export type BlockCreateManyDistrictInput = {
@@ -713,6 +812,7 @@ export type BlockUpdateWithoutDistrictInput = {
   inventory?: Prisma.InventoryUpdateOneWithoutBlockNestedInput
   users?: Prisma.UserUpdateManyWithoutBlockNestedInput
   materialRequests?: Prisma.MaterialRequestUpdateManyWithoutBlockNestedInput
+  sites?: Prisma.SiteUpdateManyWithoutBlockNestedInput
 }
 
 export type BlockUncheckedUpdateWithoutDistrictInput = {
@@ -724,6 +824,7 @@ export type BlockUncheckedUpdateWithoutDistrictInput = {
   inventory?: Prisma.InventoryUncheckedUpdateOneWithoutBlockNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutBlockNestedInput
   materialRequests?: Prisma.MaterialRequestUncheckedUpdateManyWithoutBlockNestedInput
+  sites?: Prisma.SiteUncheckedUpdateManyWithoutBlockNestedInput
 }
 
 export type BlockUncheckedUpdateManyWithoutDistrictInput = {
@@ -742,11 +843,13 @@ export type BlockUncheckedUpdateManyWithoutDistrictInput = {
 export type BlockCountOutputType = {
   users: number
   materialRequests: number
+  sites: number
 }
 
 export type BlockCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   users?: boolean | BlockCountOutputTypeCountUsersArgs
   materialRequests?: boolean | BlockCountOutputTypeCountMaterialRequestsArgs
+  sites?: boolean | BlockCountOutputTypeCountSitesArgs
 }
 
 /**
@@ -773,6 +876,13 @@ export type BlockCountOutputTypeCountMaterialRequestsArgs<ExtArgs extends runtim
   where?: Prisma.MaterialRequestWhereInput
 }
 
+/**
+ * BlockCountOutputType without action
+ */
+export type BlockCountOutputTypeCountSitesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SiteWhereInput
+}
+
 
 export type BlockSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -785,6 +895,7 @@ export type BlockSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   inventory?: boolean | Prisma.Block$inventoryArgs<ExtArgs>
   users?: boolean | Prisma.Block$usersArgs<ExtArgs>
   materialRequests?: boolean | Prisma.Block$materialRequestsArgs<ExtArgs>
+  sites?: boolean | Prisma.Block$sitesArgs<ExtArgs>
   _count?: boolean | Prisma.BlockCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["block"]>
 
@@ -823,6 +934,7 @@ export type BlockInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   inventory?: boolean | Prisma.Block$inventoryArgs<ExtArgs>
   users?: boolean | Prisma.Block$usersArgs<ExtArgs>
   materialRequests?: boolean | Prisma.Block$materialRequestsArgs<ExtArgs>
+  sites?: boolean | Prisma.Block$sitesArgs<ExtArgs>
   _count?: boolean | Prisma.BlockCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type BlockIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -839,6 +951,7 @@ export type $BlockPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     inventory: Prisma.$InventoryPayload<ExtArgs> | null
     users: Prisma.$UserPayload<ExtArgs>[]
     materialRequests: Prisma.$MaterialRequestPayload<ExtArgs>[]
+    sites: Prisma.$SitePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1245,6 +1358,7 @@ export interface Prisma__BlockClient<T, Null = never, ExtArgs extends runtime.Ty
   inventory<T extends Prisma.Block$inventoryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Block$inventoryArgs<ExtArgs>>): Prisma.Prisma__InventoryClient<runtime.Types.Result.GetResult<Prisma.$InventoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   users<T extends Prisma.Block$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Block$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   materialRequests<T extends Prisma.Block$materialRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Block$materialRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MaterialRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sites<T extends Prisma.Block$sitesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Block$sitesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SitePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1740,6 +1854,30 @@ export type Block$materialRequestsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.MaterialRequestScalarFieldEnum | Prisma.MaterialRequestScalarFieldEnum[]
+}
+
+/**
+ * Block.sites
+ */
+export type Block$sitesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Site
+   */
+  select?: Prisma.SiteSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Site
+   */
+  omit?: Prisma.SiteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteInclude<ExtArgs> | null
+  where?: Prisma.SiteWhereInput
+  orderBy?: Prisma.SiteOrderByWithRelationInput | Prisma.SiteOrderByWithRelationInput[]
+  cursor?: Prisma.SiteWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SiteScalarFieldEnum | Prisma.SiteScalarFieldEnum[]
 }
 
 /**
