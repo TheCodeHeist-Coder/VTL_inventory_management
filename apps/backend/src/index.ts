@@ -1,19 +1,20 @@
 import  express ,{ Express } from "express";
 import dotenv from "dotenv";
-
 dotenv.config();
 
-import { prisma } from "@repo/db"
-
-
-
-
+import cors from "cors";
+import loginRoute from "./routes/authRoute.js";
 
 const app: Express = express();
 
-app.get("/", async(req, res) => {
-  res.send("Hello World!");
-});
+
+// abhi ke liye bas itna hi
+app.use(cors())
+app.use(express.json());
+
+
+// login route
+app.use("/api/v1/auth", loginRoute)
 
 const PORT = process.env.PORT || 3000;
 
