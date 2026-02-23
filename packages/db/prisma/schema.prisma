@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client"
-  output   = "../generated/prisma"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -44,7 +44,7 @@ enum ReplenishStatus {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(cuid())
   name      String
   email     String   @unique
   password  String
@@ -54,11 +54,11 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // Relations based on role
-  districtId Int?
+  // relations based on role
+  districtId String?
   district   District? @relation(fields: [districtId], references: [id])
 
-  blockId Int?
+  blockId String?
   block   Block? @relation(fields: [blockId], references: [id])
 
   // Material requests created by site engineers
@@ -71,7 +71,7 @@ model User {
 }
 
 model District {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(cuid())
   name      String   @unique
   code      String   @unique
   createdAt DateTime @default(now())
@@ -84,10 +84,10 @@ model District {
 }
 
 model Block {
-  id         Int      @id @default(autoincrement())
+  id         String   @id @default(cuid())
   name       String
   code       String   @unique
-  districtId Int
+  districtId String
   district   District @relation(fields: [districtId], references: [id], onDelete: Cascade)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -100,8 +100,8 @@ model Block {
 }
 
 model Inventory {
-  id        Int      @id @default(autoincrement())
-  blockId   Int      @unique
+  id        String   @id @default(cuid())
+  blockId   String   @unique
   block     Block    @relation(fields: [blockId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -113,8 +113,8 @@ model Inventory {
 }
 
 model InventoryItem {
-  id          Int       @id @default(autoincrement())
-  inventoryId Int
+  id          String    @id @default(cuid())
+  inventoryId String
   inventory   Inventory @relation(fields: [inventoryId], references: [id], onDelete: Cascade)
 
   materialName String
@@ -129,10 +129,10 @@ model InventoryItem {
 }
 
 model MaterialRequest {
-  id              Int           @id @default(autoincrement())
-  siteEngineerId  Int
+  id              String        @id @default(cuid())
+  siteEngineerId  String
   siteEngineer    User          @relation(fields: [siteEngineerId], references: [id])
-  blockId         Int
+  blockId         String
   block           Block         @relation(fields: [blockId], references: [id])
   status          RequestStatus @default(PENDING)
   remarks         String?
@@ -148,8 +148,8 @@ model MaterialRequest {
 }
 
 model MaterialRequestItem {
-  id               Int             @id @default(autoincrement())
-  materialRequestId Int
+  id               String          @id @default(cuid())
+  materialRequestId String
   materialRequest  MaterialRequest @relation(fields: [materialRequestId], references: [id], onDelete: Cascade)
 
   materialName    String
@@ -163,10 +163,10 @@ model MaterialRequestItem {
 }
 
 model ReplenishRequest {
-  id             Int             @id @default(autoincrement())
-  storeManagerId Int
+  id             String          @id @default(cuid())
+  storeManagerId String
   storeManager   User            @relation(fields: [storeManagerId], references: [id])
-  inventoryId    Int
+  inventoryId    String
   inventory      Inventory       @relation(fields: [inventoryId], references: [id])
   status         ReplenishStatus @default(PENDING)
   remarks        String?
@@ -180,8 +180,8 @@ model ReplenishRequest {
 }
 
 model ReplenishRequestItem {
-  id                 Int              @id @default(autoincrement())
-  replenishRequestId Int
+  id                 String           @id @default(cuid())
+  replenishRequestId String
   replenishRequest   ReplenishRequest @relation(fields: [replenishRequestId], references: [id], onDelete: Cascade)
 
   materialName String
