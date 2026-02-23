@@ -30,6 +30,7 @@ export type DistrictMinAggregateOutputType = {
   code: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  stateId: string | null
 }
 
 export type DistrictMaxAggregateOutputType = {
@@ -38,6 +39,7 @@ export type DistrictMaxAggregateOutputType = {
   code: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  stateId: string | null
 }
 
 export type DistrictCountAggregateOutputType = {
@@ -46,6 +48,7 @@ export type DistrictCountAggregateOutputType = {
   code: number
   createdAt: number
   updatedAt: number
+  stateId: number
   _all: number
 }
 
@@ -56,6 +59,7 @@ export type DistrictMinAggregateInputType = {
   code?: true
   createdAt?: true
   updatedAt?: true
+  stateId?: true
 }
 
 export type DistrictMaxAggregateInputType = {
@@ -64,6 +68,7 @@ export type DistrictMaxAggregateInputType = {
   code?: true
   createdAt?: true
   updatedAt?: true
+  stateId?: true
 }
 
 export type DistrictCountAggregateInputType = {
@@ -72,6 +77,7 @@ export type DistrictCountAggregateInputType = {
   code?: true
   createdAt?: true
   updatedAt?: true
+  stateId?: true
   _all?: true
 }
 
@@ -153,6 +159,7 @@ export type DistrictGroupByOutputType = {
   code: string
   createdAt: Date
   updatedAt: Date
+  stateId: string | null
   _count: DistrictCountAggregateOutputType | null
   _min: DistrictMinAggregateOutputType | null
   _max: DistrictMaxAggregateOutputType | null
@@ -182,8 +189,10 @@ export type DistrictWhereInput = {
   code?: Prisma.StringFilter<"District"> | string
   createdAt?: Prisma.DateTimeFilter<"District"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"District"> | Date | string
+  stateId?: Prisma.StringNullableFilter<"District"> | string | null
   blocks?: Prisma.BlockListRelationFilter
   users?: Prisma.UserListRelationFilter
+  state?: Prisma.XOR<Prisma.StateNullableScalarRelationFilter, Prisma.StateWhereInput> | null
 }
 
 export type DistrictOrderByWithRelationInput = {
@@ -192,8 +201,10 @@ export type DistrictOrderByWithRelationInput = {
   code?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  stateId?: Prisma.SortOrderInput | Prisma.SortOrder
   blocks?: Prisma.BlockOrderByRelationAggregateInput
   users?: Prisma.UserOrderByRelationAggregateInput
+  state?: Prisma.StateOrderByWithRelationInput
 }
 
 export type DistrictWhereUniqueInput = Prisma.AtLeast<{
@@ -205,8 +216,10 @@ export type DistrictWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.DistrictWhereInput | Prisma.DistrictWhereInput[]
   createdAt?: Prisma.DateTimeFilter<"District"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"District"> | Date | string
+  stateId?: Prisma.StringNullableFilter<"District"> | string | null
   blocks?: Prisma.BlockListRelationFilter
   users?: Prisma.UserListRelationFilter
+  state?: Prisma.XOR<Prisma.StateNullableScalarRelationFilter, Prisma.StateWhereInput> | null
 }, "id" | "name" | "code">
 
 export type DistrictOrderByWithAggregationInput = {
@@ -215,6 +228,7 @@ export type DistrictOrderByWithAggregationInput = {
   code?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  stateId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.DistrictCountOrderByAggregateInput
   _max?: Prisma.DistrictMaxOrderByAggregateInput
   _min?: Prisma.DistrictMinOrderByAggregateInput
@@ -229,6 +243,7 @@ export type DistrictScalarWhereWithAggregatesInput = {
   code?: Prisma.StringWithAggregatesFilter<"District"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"District"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"District"> | Date | string
+  stateId?: Prisma.StringNullableWithAggregatesFilter<"District"> | string | null
 }
 
 export type DistrictCreateInput = {
@@ -239,6 +254,7 @@ export type DistrictCreateInput = {
   updatedAt?: Date | string
   blocks?: Prisma.BlockCreateNestedManyWithoutDistrictInput
   users?: Prisma.UserCreateNestedManyWithoutDistrictInput
+  state?: Prisma.StateCreateNestedOneWithoutDistrictsInput
 }
 
 export type DistrictUncheckedCreateInput = {
@@ -247,6 +263,7 @@ export type DistrictUncheckedCreateInput = {
   code: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  stateId?: string | null
   blocks?: Prisma.BlockUncheckedCreateNestedManyWithoutDistrictInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutDistrictInput
 }
@@ -259,6 +276,7 @@ export type DistrictUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   blocks?: Prisma.BlockUpdateManyWithoutDistrictNestedInput
   users?: Prisma.UserUpdateManyWithoutDistrictNestedInput
+  state?: Prisma.StateUpdateOneWithoutDistrictsNestedInput
 }
 
 export type DistrictUncheckedUpdateInput = {
@@ -267,6 +285,7 @@ export type DistrictUncheckedUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blocks?: Prisma.BlockUncheckedUpdateManyWithoutDistrictNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutDistrictNestedInput
 }
@@ -277,6 +296,7 @@ export type DistrictCreateManyInput = {
   code: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  stateId?: string | null
 }
 
 export type DistrictUpdateManyMutationInput = {
@@ -293,11 +313,22 @@ export type DistrictUncheckedUpdateManyInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type DistrictNullableScalarRelationFilter = {
   is?: Prisma.DistrictWhereInput | null
   isNot?: Prisma.DistrictWhereInput | null
+}
+
+export type DistrictListRelationFilter = {
+  every?: Prisma.DistrictWhereInput
+  some?: Prisma.DistrictWhereInput
+  none?: Prisma.DistrictWhereInput
+}
+
+export type DistrictOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type DistrictCountOrderByAggregateInput = {
@@ -306,6 +337,7 @@ export type DistrictCountOrderByAggregateInput = {
   code?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  stateId?: Prisma.SortOrder
 }
 
 export type DistrictMaxOrderByAggregateInput = {
@@ -314,6 +346,7 @@ export type DistrictMaxOrderByAggregateInput = {
   code?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  stateId?: Prisma.SortOrder
 }
 
 export type DistrictMinOrderByAggregateInput = {
@@ -322,6 +355,7 @@ export type DistrictMinOrderByAggregateInput = {
   code?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  stateId?: Prisma.SortOrder
 }
 
 export type DistrictScalarRelationFilter = {
@@ -345,6 +379,48 @@ export type DistrictUpdateOneWithoutUsersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.DistrictUpdateToOneWithWhereWithoutUsersInput, Prisma.DistrictUpdateWithoutUsersInput>, Prisma.DistrictUncheckedUpdateWithoutUsersInput>
 }
 
+export type DistrictCreateNestedManyWithoutStateInput = {
+  create?: Prisma.XOR<Prisma.DistrictCreateWithoutStateInput, Prisma.DistrictUncheckedCreateWithoutStateInput> | Prisma.DistrictCreateWithoutStateInput[] | Prisma.DistrictUncheckedCreateWithoutStateInput[]
+  connectOrCreate?: Prisma.DistrictCreateOrConnectWithoutStateInput | Prisma.DistrictCreateOrConnectWithoutStateInput[]
+  createMany?: Prisma.DistrictCreateManyStateInputEnvelope
+  connect?: Prisma.DistrictWhereUniqueInput | Prisma.DistrictWhereUniqueInput[]
+}
+
+export type DistrictUncheckedCreateNestedManyWithoutStateInput = {
+  create?: Prisma.XOR<Prisma.DistrictCreateWithoutStateInput, Prisma.DistrictUncheckedCreateWithoutStateInput> | Prisma.DistrictCreateWithoutStateInput[] | Prisma.DistrictUncheckedCreateWithoutStateInput[]
+  connectOrCreate?: Prisma.DistrictCreateOrConnectWithoutStateInput | Prisma.DistrictCreateOrConnectWithoutStateInput[]
+  createMany?: Prisma.DistrictCreateManyStateInputEnvelope
+  connect?: Prisma.DistrictWhereUniqueInput | Prisma.DistrictWhereUniqueInput[]
+}
+
+export type DistrictUpdateManyWithoutStateNestedInput = {
+  create?: Prisma.XOR<Prisma.DistrictCreateWithoutStateInput, Prisma.DistrictUncheckedCreateWithoutStateInput> | Prisma.DistrictCreateWithoutStateInput[] | Prisma.DistrictUncheckedCreateWithoutStateInput[]
+  connectOrCreate?: Prisma.DistrictCreateOrConnectWithoutStateInput | Prisma.DistrictCreateOrConnectWithoutStateInput[]
+  upsert?: Prisma.DistrictUpsertWithWhereUniqueWithoutStateInput | Prisma.DistrictUpsertWithWhereUniqueWithoutStateInput[]
+  createMany?: Prisma.DistrictCreateManyStateInputEnvelope
+  set?: Prisma.DistrictWhereUniqueInput | Prisma.DistrictWhereUniqueInput[]
+  disconnect?: Prisma.DistrictWhereUniqueInput | Prisma.DistrictWhereUniqueInput[]
+  delete?: Prisma.DistrictWhereUniqueInput | Prisma.DistrictWhereUniqueInput[]
+  connect?: Prisma.DistrictWhereUniqueInput | Prisma.DistrictWhereUniqueInput[]
+  update?: Prisma.DistrictUpdateWithWhereUniqueWithoutStateInput | Prisma.DistrictUpdateWithWhereUniqueWithoutStateInput[]
+  updateMany?: Prisma.DistrictUpdateManyWithWhereWithoutStateInput | Prisma.DistrictUpdateManyWithWhereWithoutStateInput[]
+  deleteMany?: Prisma.DistrictScalarWhereInput | Prisma.DistrictScalarWhereInput[]
+}
+
+export type DistrictUncheckedUpdateManyWithoutStateNestedInput = {
+  create?: Prisma.XOR<Prisma.DistrictCreateWithoutStateInput, Prisma.DistrictUncheckedCreateWithoutStateInput> | Prisma.DistrictCreateWithoutStateInput[] | Prisma.DistrictUncheckedCreateWithoutStateInput[]
+  connectOrCreate?: Prisma.DistrictCreateOrConnectWithoutStateInput | Prisma.DistrictCreateOrConnectWithoutStateInput[]
+  upsert?: Prisma.DistrictUpsertWithWhereUniqueWithoutStateInput | Prisma.DistrictUpsertWithWhereUniqueWithoutStateInput[]
+  createMany?: Prisma.DistrictCreateManyStateInputEnvelope
+  set?: Prisma.DistrictWhereUniqueInput | Prisma.DistrictWhereUniqueInput[]
+  disconnect?: Prisma.DistrictWhereUniqueInput | Prisma.DistrictWhereUniqueInput[]
+  delete?: Prisma.DistrictWhereUniqueInput | Prisma.DistrictWhereUniqueInput[]
+  connect?: Prisma.DistrictWhereUniqueInput | Prisma.DistrictWhereUniqueInput[]
+  update?: Prisma.DistrictUpdateWithWhereUniqueWithoutStateInput | Prisma.DistrictUpdateWithWhereUniqueWithoutStateInput[]
+  updateMany?: Prisma.DistrictUpdateManyWithWhereWithoutStateInput | Prisma.DistrictUpdateManyWithWhereWithoutStateInput[]
+  deleteMany?: Prisma.DistrictScalarWhereInput | Prisma.DistrictScalarWhereInput[]
+}
+
 export type DistrictCreateNestedOneWithoutBlocksInput = {
   create?: Prisma.XOR<Prisma.DistrictCreateWithoutBlocksInput, Prisma.DistrictUncheckedCreateWithoutBlocksInput>
   connectOrCreate?: Prisma.DistrictCreateOrConnectWithoutBlocksInput
@@ -366,6 +442,7 @@ export type DistrictCreateWithoutUsersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   blocks?: Prisma.BlockCreateNestedManyWithoutDistrictInput
+  state?: Prisma.StateCreateNestedOneWithoutDistrictsInput
 }
 
 export type DistrictUncheckedCreateWithoutUsersInput = {
@@ -374,6 +451,7 @@ export type DistrictUncheckedCreateWithoutUsersInput = {
   code: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  stateId?: string | null
   blocks?: Prisma.BlockUncheckedCreateNestedManyWithoutDistrictInput
 }
 
@@ -400,6 +478,7 @@ export type DistrictUpdateWithoutUsersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   blocks?: Prisma.BlockUpdateManyWithoutDistrictNestedInput
+  state?: Prisma.StateUpdateOneWithoutDistrictsNestedInput
 }
 
 export type DistrictUncheckedUpdateWithoutUsersInput = {
@@ -408,7 +487,66 @@ export type DistrictUncheckedUpdateWithoutUsersInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blocks?: Prisma.BlockUncheckedUpdateManyWithoutDistrictNestedInput
+}
+
+export type DistrictCreateWithoutStateInput = {
+  id?: string
+  name: string
+  code: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  blocks?: Prisma.BlockCreateNestedManyWithoutDistrictInput
+  users?: Prisma.UserCreateNestedManyWithoutDistrictInput
+}
+
+export type DistrictUncheckedCreateWithoutStateInput = {
+  id?: string
+  name: string
+  code: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  blocks?: Prisma.BlockUncheckedCreateNestedManyWithoutDistrictInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutDistrictInput
+}
+
+export type DistrictCreateOrConnectWithoutStateInput = {
+  where: Prisma.DistrictWhereUniqueInput
+  create: Prisma.XOR<Prisma.DistrictCreateWithoutStateInput, Prisma.DistrictUncheckedCreateWithoutStateInput>
+}
+
+export type DistrictCreateManyStateInputEnvelope = {
+  data: Prisma.DistrictCreateManyStateInput | Prisma.DistrictCreateManyStateInput[]
+  skipDuplicates?: boolean
+}
+
+export type DistrictUpsertWithWhereUniqueWithoutStateInput = {
+  where: Prisma.DistrictWhereUniqueInput
+  update: Prisma.XOR<Prisma.DistrictUpdateWithoutStateInput, Prisma.DistrictUncheckedUpdateWithoutStateInput>
+  create: Prisma.XOR<Prisma.DistrictCreateWithoutStateInput, Prisma.DistrictUncheckedCreateWithoutStateInput>
+}
+
+export type DistrictUpdateWithWhereUniqueWithoutStateInput = {
+  where: Prisma.DistrictWhereUniqueInput
+  data: Prisma.XOR<Prisma.DistrictUpdateWithoutStateInput, Prisma.DistrictUncheckedUpdateWithoutStateInput>
+}
+
+export type DistrictUpdateManyWithWhereWithoutStateInput = {
+  where: Prisma.DistrictScalarWhereInput
+  data: Prisma.XOR<Prisma.DistrictUpdateManyMutationInput, Prisma.DistrictUncheckedUpdateManyWithoutStateInput>
+}
+
+export type DistrictScalarWhereInput = {
+  AND?: Prisma.DistrictScalarWhereInput | Prisma.DistrictScalarWhereInput[]
+  OR?: Prisma.DistrictScalarWhereInput[]
+  NOT?: Prisma.DistrictScalarWhereInput | Prisma.DistrictScalarWhereInput[]
+  id?: Prisma.StringFilter<"District"> | string
+  name?: Prisma.StringFilter<"District"> | string
+  code?: Prisma.StringFilter<"District"> | string
+  createdAt?: Prisma.DateTimeFilter<"District"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"District"> | Date | string
+  stateId?: Prisma.StringNullableFilter<"District"> | string | null
 }
 
 export type DistrictCreateWithoutBlocksInput = {
@@ -418,6 +556,7 @@ export type DistrictCreateWithoutBlocksInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutDistrictInput
+  state?: Prisma.StateCreateNestedOneWithoutDistrictsInput
 }
 
 export type DistrictUncheckedCreateWithoutBlocksInput = {
@@ -426,6 +565,7 @@ export type DistrictUncheckedCreateWithoutBlocksInput = {
   code: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  stateId?: string | null
   users?: Prisma.UserUncheckedCreateNestedManyWithoutDistrictInput
 }
 
@@ -452,6 +592,7 @@ export type DistrictUpdateWithoutBlocksInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutDistrictNestedInput
+  state?: Prisma.StateUpdateOneWithoutDistrictsNestedInput
 }
 
 export type DistrictUncheckedUpdateWithoutBlocksInput = {
@@ -460,7 +601,44 @@ export type DistrictUncheckedUpdateWithoutBlocksInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   users?: Prisma.UserUncheckedUpdateManyWithoutDistrictNestedInput
+}
+
+export type DistrictCreateManyStateInput = {
+  id?: string
+  name: string
+  code: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type DistrictUpdateWithoutStateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  blocks?: Prisma.BlockUpdateManyWithoutDistrictNestedInput
+  users?: Prisma.UserUpdateManyWithoutDistrictNestedInput
+}
+
+export type DistrictUncheckedUpdateWithoutStateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  blocks?: Prisma.BlockUncheckedUpdateManyWithoutDistrictNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutDistrictNestedInput
+}
+
+export type DistrictUncheckedUpdateManyWithoutStateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -509,8 +687,10 @@ export type DistrictSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   code?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  stateId?: boolean
   blocks?: boolean | Prisma.District$blocksArgs<ExtArgs>
   users?: boolean | Prisma.District$usersArgs<ExtArgs>
+  state?: boolean | Prisma.District$stateArgs<ExtArgs>
   _count?: boolean | Prisma.DistrictCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["district"]>
 
@@ -520,6 +700,8 @@ export type DistrictSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   code?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  stateId?: boolean
+  state?: boolean | Prisma.District$stateArgs<ExtArgs>
 }, ExtArgs["result"]["district"]>
 
 export type DistrictSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -528,6 +710,8 @@ export type DistrictSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   code?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  stateId?: boolean
+  state?: boolean | Prisma.District$stateArgs<ExtArgs>
 }, ExtArgs["result"]["district"]>
 
 export type DistrictSelectScalar = {
@@ -536,22 +720,29 @@ export type DistrictSelectScalar = {
   code?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  stateId?: boolean
 }
 
-export type DistrictOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "code" | "createdAt" | "updatedAt", ExtArgs["result"]["district"]>
+export type DistrictOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "code" | "createdAt" | "updatedAt" | "stateId", ExtArgs["result"]["district"]>
 export type DistrictInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   blocks?: boolean | Prisma.District$blocksArgs<ExtArgs>
   users?: boolean | Prisma.District$usersArgs<ExtArgs>
+  state?: boolean | Prisma.District$stateArgs<ExtArgs>
   _count?: boolean | Prisma.DistrictCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type DistrictIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type DistrictIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type DistrictIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  state?: boolean | Prisma.District$stateArgs<ExtArgs>
+}
+export type DistrictIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  state?: boolean | Prisma.District$stateArgs<ExtArgs>
+}
 
 export type $DistrictPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "District"
   objects: {
     blocks: Prisma.$BlockPayload<ExtArgs>[]
     users: Prisma.$UserPayload<ExtArgs>[]
+    state: Prisma.$StatePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -559,6 +750,7 @@ export type $DistrictPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     code: string
     createdAt: Date
     updatedAt: Date
+    stateId: string | null
   }, ExtArgs["result"]["district"]>
   composites: {}
 }
@@ -955,6 +1147,7 @@ export interface Prisma__DistrictClient<T, Null = never, ExtArgs extends runtime
   readonly [Symbol.toStringTag]: "PrismaPromise"
   blocks<T extends Prisma.District$blocksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.District$blocksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   users<T extends Prisma.District$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.District$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  state<T extends Prisma.District$stateArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.District$stateArgs<ExtArgs>>): Prisma.Prisma__StateClient<runtime.Types.Result.GetResult<Prisma.$StatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -989,6 +1182,7 @@ export interface DistrictFieldRefs {
   readonly code: Prisma.FieldRef<"District", 'String'>
   readonly createdAt: Prisma.FieldRef<"District", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"District", 'DateTime'>
+  readonly stateId: Prisma.FieldRef<"District", 'String'>
 }
     
 
@@ -1238,6 +1432,10 @@ export type DistrictCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extens
    */
   data: Prisma.DistrictCreateManyInput | Prisma.DistrictCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DistrictIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1308,6 +1506,10 @@ export type DistrictUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extens
    * Limit how many Districts to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DistrictIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1422,6 +1624,25 @@ export type District$usersArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
+}
+
+/**
+ * District.state
+ */
+export type District$stateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the State
+   */
+  select?: Prisma.StateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the State
+   */
+  omit?: Prisma.StateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StateInclude<ExtArgs> | null
+  where?: Prisma.StateWhereInput
 }
 
 /**
