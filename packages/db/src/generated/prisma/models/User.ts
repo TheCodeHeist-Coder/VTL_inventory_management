@@ -34,6 +34,7 @@ export type UserMinAggregateOutputType = {
   active: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  stateId: string | null
   districtId: string | null
   blockId: string | null
   siteId: string | null
@@ -49,6 +50,7 @@ export type UserMaxAggregateOutputType = {
   active: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  stateId: string | null
   districtId: string | null
   blockId: string | null
   siteId: string | null
@@ -64,6 +66,7 @@ export type UserCountAggregateOutputType = {
   active: number
   createdAt: number
   updatedAt: number
+  stateId: number
   districtId: number
   blockId: number
   siteId: number
@@ -81,6 +84,7 @@ export type UserMinAggregateInputType = {
   active?: true
   createdAt?: true
   updatedAt?: true
+  stateId?: true
   districtId?: true
   blockId?: true
   siteId?: true
@@ -96,6 +100,7 @@ export type UserMaxAggregateInputType = {
   active?: true
   createdAt?: true
   updatedAt?: true
+  stateId?: true
   districtId?: true
   blockId?: true
   siteId?: true
@@ -111,6 +116,7 @@ export type UserCountAggregateInputType = {
   active?: true
   createdAt?: true
   updatedAt?: true
+  stateId?: true
   districtId?: true
   blockId?: true
   siteId?: true
@@ -199,6 +205,7 @@ export type UserGroupByOutputType = {
   active: boolean
   createdAt: Date
   updatedAt: Date
+  stateId: string | null
   districtId: string | null
   blockId: string | null
   siteId: string | null
@@ -235,9 +242,11 @@ export type UserWhereInput = {
   active?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  stateId?: Prisma.StringNullableFilter<"User"> | string | null
   districtId?: Prisma.StringNullableFilter<"User"> | string | null
   blockId?: Prisma.StringNullableFilter<"User"> | string | null
   siteId?: Prisma.StringNullableFilter<"User"> | string | null
+  state?: Prisma.XOR<Prisma.StateNullableScalarRelationFilter, Prisma.StateWhereInput> | null
   district?: Prisma.XOR<Prisma.DistrictNullableScalarRelationFilter, Prisma.DistrictWhereInput> | null
   block?: Prisma.XOR<Prisma.BlockNullableScalarRelationFilter, Prisma.BlockWhereInput> | null
   site?: Prisma.XOR<Prisma.SiteNullableScalarRelationFilter, Prisma.SiteWhereInput> | null
@@ -255,9 +264,11 @@ export type UserOrderByWithRelationInput = {
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  stateId?: Prisma.SortOrderInput | Prisma.SortOrder
   districtId?: Prisma.SortOrderInput | Prisma.SortOrder
   blockId?: Prisma.SortOrderInput | Prisma.SortOrder
   siteId?: Prisma.SortOrderInput | Prisma.SortOrder
+  state?: Prisma.StateOrderByWithRelationInput
   district?: Prisma.DistrictOrderByWithRelationInput
   block?: Prisma.BlockOrderByWithRelationInput
   site?: Prisma.SiteOrderByWithRelationInput
@@ -278,9 +289,11 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   active?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  stateId?: Prisma.StringNullableFilter<"User"> | string | null
   districtId?: Prisma.StringNullableFilter<"User"> | string | null
   blockId?: Prisma.StringNullableFilter<"User"> | string | null
   siteId?: Prisma.StringNullableFilter<"User"> | string | null
+  state?: Prisma.XOR<Prisma.StateNullableScalarRelationFilter, Prisma.StateWhereInput> | null
   district?: Prisma.XOR<Prisma.DistrictNullableScalarRelationFilter, Prisma.DistrictWhereInput> | null
   block?: Prisma.XOR<Prisma.BlockNullableScalarRelationFilter, Prisma.BlockWhereInput> | null
   site?: Prisma.XOR<Prisma.SiteNullableScalarRelationFilter, Prisma.SiteWhereInput> | null
@@ -298,6 +311,7 @@ export type UserOrderByWithAggregationInput = {
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  stateId?: Prisma.SortOrderInput | Prisma.SortOrder
   districtId?: Prisma.SortOrderInput | Prisma.SortOrder
   blockId?: Prisma.SortOrderInput | Prisma.SortOrder
   siteId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -319,6 +333,7 @@ export type UserScalarWhereWithAggregatesInput = {
   active?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  stateId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   districtId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   blockId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   siteId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
@@ -334,6 +349,7 @@ export type UserCreateInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  state?: Prisma.StateCreateNestedOneWithoutUsersInput
   district?: Prisma.DistrictCreateNestedOneWithoutUsersInput
   block?: Prisma.BlockCreateNestedOneWithoutUsersInput
   site?: Prisma.SiteCreateNestedOneWithoutUsersInput
@@ -351,6 +367,7 @@ export type UserUncheckedCreateInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  stateId?: string | null
   districtId?: string | null
   blockId?: string | null
   siteId?: string | null
@@ -368,6 +385,7 @@ export type UserUpdateInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  state?: Prisma.StateUpdateOneWithoutUsersNestedInput
   district?: Prisma.DistrictUpdateOneWithoutUsersNestedInput
   block?: Prisma.BlockUpdateOneWithoutUsersNestedInput
   site?: Prisma.SiteUpdateOneWithoutUsersNestedInput
@@ -385,6 +403,7 @@ export type UserUncheckedUpdateInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blockId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -402,6 +421,7 @@ export type UserCreateManyInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  stateId?: string | null
   districtId?: string | null
   blockId?: string | null
   siteId?: string | null
@@ -429,6 +449,7 @@ export type UserUncheckedUpdateManyInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blockId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -444,6 +465,7 @@ export type UserCountOrderByAggregateInput = {
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  stateId?: Prisma.SortOrder
   districtId?: Prisma.SortOrder
   blockId?: Prisma.SortOrder
   siteId?: Prisma.SortOrder
@@ -459,6 +481,7 @@ export type UserMaxOrderByAggregateInput = {
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  stateId?: Prisma.SortOrder
   districtId?: Prisma.SortOrder
   blockId?: Prisma.SortOrder
   siteId?: Prisma.SortOrder
@@ -474,6 +497,7 @@ export type UserMinOrderByAggregateInput = {
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  stateId?: Prisma.SortOrder
   districtId?: Prisma.SortOrder
   blockId?: Prisma.SortOrder
   siteId?: Prisma.SortOrder
@@ -512,6 +536,48 @@ export type BoolFieldUpdateOperationsInput = {
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+}
+
+export type UserCreateNestedManyWithoutStateInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutStateInput, Prisma.UserUncheckedCreateWithoutStateInput> | Prisma.UserCreateWithoutStateInput[] | Prisma.UserUncheckedCreateWithoutStateInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStateInput | Prisma.UserCreateOrConnectWithoutStateInput[]
+  createMany?: Prisma.UserCreateManyStateInputEnvelope
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+}
+
+export type UserUncheckedCreateNestedManyWithoutStateInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutStateInput, Prisma.UserUncheckedCreateWithoutStateInput> | Prisma.UserCreateWithoutStateInput[] | Prisma.UserUncheckedCreateWithoutStateInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStateInput | Prisma.UserCreateOrConnectWithoutStateInput[]
+  createMany?: Prisma.UserCreateManyStateInputEnvelope
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+}
+
+export type UserUpdateManyWithoutStateNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutStateInput, Prisma.UserUncheckedCreateWithoutStateInput> | Prisma.UserCreateWithoutStateInput[] | Prisma.UserUncheckedCreateWithoutStateInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStateInput | Prisma.UserCreateOrConnectWithoutStateInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutStateInput | Prisma.UserUpsertWithWhereUniqueWithoutStateInput[]
+  createMany?: Prisma.UserCreateManyStateInputEnvelope
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutStateInput | Prisma.UserUpdateWithWhereUniqueWithoutStateInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutStateInput | Prisma.UserUpdateManyWithWhereWithoutStateInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+}
+
+export type UserUncheckedUpdateManyWithoutStateNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutStateInput, Prisma.UserUncheckedCreateWithoutStateInput> | Prisma.UserCreateWithoutStateInput[] | Prisma.UserUncheckedCreateWithoutStateInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStateInput | Prisma.UserCreateOrConnectWithoutStateInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutStateInput | Prisma.UserUpsertWithWhereUniqueWithoutStateInput[]
+  createMany?: Prisma.UserCreateManyStateInputEnvelope
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutStateInput | Prisma.UserUpdateWithWhereUniqueWithoutStateInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutStateInput | Prisma.UserUpdateManyWithWhereWithoutStateInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
 }
 
 export type UserCreateNestedManyWithoutDistrictInput = {
@@ -668,6 +734,85 @@ export type UserUpdateOneRequiredWithoutReplenishRequestsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReplenishRequestsInput, Prisma.UserUpdateWithoutReplenishRequestsInput>, Prisma.UserUncheckedUpdateWithoutReplenishRequestsInput>
 }
 
+export type UserCreateWithoutStateInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  phone?: string | null
+  role: $Enums.Role
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  district?: Prisma.DistrictCreateNestedOneWithoutUsersInput
+  block?: Prisma.BlockCreateNestedOneWithoutUsersInput
+  site?: Prisma.SiteCreateNestedOneWithoutUsersInput
+  materialRequests?: Prisma.MaterialRequestCreateNestedManyWithoutSiteEngineerInput
+  replenishRequests?: Prisma.ReplenishRequestCreateNestedManyWithoutStoreManagerInput
+}
+
+export type UserUncheckedCreateWithoutStateInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  phone?: string | null
+  role: $Enums.Role
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  districtId?: string | null
+  blockId?: string | null
+  siteId?: string | null
+  materialRequests?: Prisma.MaterialRequestUncheckedCreateNestedManyWithoutSiteEngineerInput
+  replenishRequests?: Prisma.ReplenishRequestUncheckedCreateNestedManyWithoutStoreManagerInput
+}
+
+export type UserCreateOrConnectWithoutStateInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutStateInput, Prisma.UserUncheckedCreateWithoutStateInput>
+}
+
+export type UserCreateManyStateInputEnvelope = {
+  data: Prisma.UserCreateManyStateInput | Prisma.UserCreateManyStateInput[]
+  skipDuplicates?: boolean
+}
+
+export type UserUpsertWithWhereUniqueWithoutStateInput = {
+  where: Prisma.UserWhereUniqueInput
+  update: Prisma.XOR<Prisma.UserUpdateWithoutStateInput, Prisma.UserUncheckedUpdateWithoutStateInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutStateInput, Prisma.UserUncheckedCreateWithoutStateInput>
+}
+
+export type UserUpdateWithWhereUniqueWithoutStateInput = {
+  where: Prisma.UserWhereUniqueInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutStateInput, Prisma.UserUncheckedUpdateWithoutStateInput>
+}
+
+export type UserUpdateManyWithWhereWithoutStateInput = {
+  where: Prisma.UserScalarWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutStateInput>
+}
+
+export type UserScalarWhereInput = {
+  AND?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+  OR?: Prisma.UserScalarWhereInput[]
+  NOT?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+  id?: Prisma.StringFilter<"User"> | string
+  name?: Prisma.StringFilter<"User"> | string
+  email?: Prisma.StringFilter<"User"> | string
+  password?: Prisma.StringFilter<"User"> | string
+  phone?: Prisma.StringNullableFilter<"User"> | string | null
+  role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
+  active?: Prisma.BoolFilter<"User"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  stateId?: Prisma.StringNullableFilter<"User"> | string | null
+  districtId?: Prisma.StringNullableFilter<"User"> | string | null
+  blockId?: Prisma.StringNullableFilter<"User"> | string | null
+  siteId?: Prisma.StringNullableFilter<"User"> | string | null
+}
+
 export type UserCreateWithoutDistrictInput = {
   id?: string
   name: string
@@ -678,6 +823,7 @@ export type UserCreateWithoutDistrictInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  state?: Prisma.StateCreateNestedOneWithoutUsersInput
   block?: Prisma.BlockCreateNestedOneWithoutUsersInput
   site?: Prisma.SiteCreateNestedOneWithoutUsersInput
   materialRequests?: Prisma.MaterialRequestCreateNestedManyWithoutSiteEngineerInput
@@ -694,6 +840,7 @@ export type UserUncheckedCreateWithoutDistrictInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  stateId?: string | null
   blockId?: string | null
   siteId?: string | null
   materialRequests?: Prisma.MaterialRequestUncheckedCreateNestedManyWithoutSiteEngineerInput
@@ -726,24 +873,6 @@ export type UserUpdateManyWithWhereWithoutDistrictInput = {
   data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutDistrictInput>
 }
 
-export type UserScalarWhereInput = {
-  AND?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
-  OR?: Prisma.UserScalarWhereInput[]
-  NOT?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
-  id?: Prisma.StringFilter<"User"> | string
-  name?: Prisma.StringFilter<"User"> | string
-  email?: Prisma.StringFilter<"User"> | string
-  password?: Prisma.StringFilter<"User"> | string
-  phone?: Prisma.StringNullableFilter<"User"> | string | null
-  role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
-  active?: Prisma.BoolFilter<"User"> | boolean
-  createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  districtId?: Prisma.StringNullableFilter<"User"> | string | null
-  blockId?: Prisma.StringNullableFilter<"User"> | string | null
-  siteId?: Prisma.StringNullableFilter<"User"> | string | null
-}
-
 export type UserCreateWithoutBlockInput = {
   id?: string
   name: string
@@ -754,6 +883,7 @@ export type UserCreateWithoutBlockInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  state?: Prisma.StateCreateNestedOneWithoutUsersInput
   district?: Prisma.DistrictCreateNestedOneWithoutUsersInput
   site?: Prisma.SiteCreateNestedOneWithoutUsersInput
   materialRequests?: Prisma.MaterialRequestCreateNestedManyWithoutSiteEngineerInput
@@ -770,6 +900,7 @@ export type UserUncheckedCreateWithoutBlockInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  stateId?: string | null
   districtId?: string | null
   siteId?: string | null
   materialRequests?: Prisma.MaterialRequestUncheckedCreateNestedManyWithoutSiteEngineerInput
@@ -812,6 +943,7 @@ export type UserCreateWithoutSiteInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  state?: Prisma.StateCreateNestedOneWithoutUsersInput
   district?: Prisma.DistrictCreateNestedOneWithoutUsersInput
   block?: Prisma.BlockCreateNestedOneWithoutUsersInput
   materialRequests?: Prisma.MaterialRequestCreateNestedManyWithoutSiteEngineerInput
@@ -828,6 +960,7 @@ export type UserUncheckedCreateWithoutSiteInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  stateId?: string | null
   districtId?: string | null
   blockId?: string | null
   materialRequests?: Prisma.MaterialRequestUncheckedCreateNestedManyWithoutSiteEngineerInput
@@ -870,6 +1003,7 @@ export type UserCreateWithoutMaterialRequestsInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  state?: Prisma.StateCreateNestedOneWithoutUsersInput
   district?: Prisma.DistrictCreateNestedOneWithoutUsersInput
   block?: Prisma.BlockCreateNestedOneWithoutUsersInput
   site?: Prisma.SiteCreateNestedOneWithoutUsersInput
@@ -886,6 +1020,7 @@ export type UserUncheckedCreateWithoutMaterialRequestsInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  stateId?: string | null
   districtId?: string | null
   blockId?: string | null
   siteId?: string | null
@@ -918,6 +1053,7 @@ export type UserUpdateWithoutMaterialRequestsInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  state?: Prisma.StateUpdateOneWithoutUsersNestedInput
   district?: Prisma.DistrictUpdateOneWithoutUsersNestedInput
   block?: Prisma.BlockUpdateOneWithoutUsersNestedInput
   site?: Prisma.SiteUpdateOneWithoutUsersNestedInput
@@ -934,6 +1070,7 @@ export type UserUncheckedUpdateWithoutMaterialRequestsInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blockId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -950,6 +1087,7 @@ export type UserCreateWithoutReplenishRequestsInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  state?: Prisma.StateCreateNestedOneWithoutUsersInput
   district?: Prisma.DistrictCreateNestedOneWithoutUsersInput
   block?: Prisma.BlockCreateNestedOneWithoutUsersInput
   site?: Prisma.SiteCreateNestedOneWithoutUsersInput
@@ -966,6 +1104,7 @@ export type UserUncheckedCreateWithoutReplenishRequestsInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  stateId?: string | null
   districtId?: string | null
   blockId?: string | null
   siteId?: string | null
@@ -998,6 +1137,7 @@ export type UserUpdateWithoutReplenishRequestsInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  state?: Prisma.StateUpdateOneWithoutUsersNestedInput
   district?: Prisma.DistrictUpdateOneWithoutUsersNestedInput
   block?: Prisma.BlockUpdateOneWithoutUsersNestedInput
   site?: Prisma.SiteUpdateOneWithoutUsersNestedInput
@@ -1014,10 +1154,75 @@ export type UserUncheckedUpdateWithoutReplenishRequestsInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blockId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   materialRequests?: Prisma.MaterialRequestUncheckedUpdateManyWithoutSiteEngineerNestedInput
+}
+
+export type UserCreateManyStateInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  phone?: string | null
+  role: $Enums.Role
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  districtId?: string | null
+  blockId?: string | null
+  siteId?: string | null
+}
+
+export type UserUpdateWithoutStateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  district?: Prisma.DistrictUpdateOneWithoutUsersNestedInput
+  block?: Prisma.BlockUpdateOneWithoutUsersNestedInput
+  site?: Prisma.SiteUpdateOneWithoutUsersNestedInput
+  materialRequests?: Prisma.MaterialRequestUpdateManyWithoutSiteEngineerNestedInput
+  replenishRequests?: Prisma.ReplenishRequestUpdateManyWithoutStoreManagerNestedInput
+}
+
+export type UserUncheckedUpdateWithoutStateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  materialRequests?: Prisma.MaterialRequestUncheckedUpdateManyWithoutSiteEngineerNestedInput
+  replenishRequests?: Prisma.ReplenishRequestUncheckedUpdateManyWithoutStoreManagerNestedInput
+}
+
+export type UserUncheckedUpdateManyWithoutStateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserCreateManyDistrictInput = {
@@ -1030,6 +1235,7 @@ export type UserCreateManyDistrictInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  stateId?: string | null
   blockId?: string | null
   siteId?: string | null
 }
@@ -1044,6 +1250,7 @@ export type UserUpdateWithoutDistrictInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  state?: Prisma.StateUpdateOneWithoutUsersNestedInput
   block?: Prisma.BlockUpdateOneWithoutUsersNestedInput
   site?: Prisma.SiteUpdateOneWithoutUsersNestedInput
   materialRequests?: Prisma.MaterialRequestUpdateManyWithoutSiteEngineerNestedInput
@@ -1060,6 +1267,7 @@ export type UserUncheckedUpdateWithoutDistrictInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blockId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   materialRequests?: Prisma.MaterialRequestUncheckedUpdateManyWithoutSiteEngineerNestedInput
@@ -1076,6 +1284,7 @@ export type UserUncheckedUpdateManyWithoutDistrictInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blockId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -1090,6 +1299,7 @@ export type UserCreateManyBlockInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  stateId?: string | null
   districtId?: string | null
   siteId?: string | null
 }
@@ -1104,6 +1314,7 @@ export type UserUpdateWithoutBlockInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  state?: Prisma.StateUpdateOneWithoutUsersNestedInput
   district?: Prisma.DistrictUpdateOneWithoutUsersNestedInput
   site?: Prisma.SiteUpdateOneWithoutUsersNestedInput
   materialRequests?: Prisma.MaterialRequestUpdateManyWithoutSiteEngineerNestedInput
@@ -1120,6 +1331,7 @@ export type UserUncheckedUpdateWithoutBlockInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   materialRequests?: Prisma.MaterialRequestUncheckedUpdateManyWithoutSiteEngineerNestedInput
@@ -1136,6 +1348,7 @@ export type UserUncheckedUpdateManyWithoutBlockInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -1150,6 +1363,7 @@ export type UserCreateManySiteInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  stateId?: string | null
   districtId?: string | null
   blockId?: string | null
 }
@@ -1164,6 +1378,7 @@ export type UserUpdateWithoutSiteInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  state?: Prisma.StateUpdateOneWithoutUsersNestedInput
   district?: Prisma.DistrictUpdateOneWithoutUsersNestedInput
   block?: Prisma.BlockUpdateOneWithoutUsersNestedInput
   materialRequests?: Prisma.MaterialRequestUpdateManyWithoutSiteEngineerNestedInput
@@ -1180,6 +1395,7 @@ export type UserUncheckedUpdateWithoutSiteInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blockId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   materialRequests?: Prisma.MaterialRequestUncheckedUpdateManyWithoutSiteEngineerNestedInput
@@ -1196,6 +1412,7 @@ export type UserUncheckedUpdateManyWithoutSiteInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blockId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -1250,9 +1467,11 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   active?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  stateId?: boolean
   districtId?: boolean
   blockId?: boolean
   siteId?: boolean
+  state?: boolean | Prisma.User$stateArgs<ExtArgs>
   district?: boolean | Prisma.User$districtArgs<ExtArgs>
   block?: boolean | Prisma.User$blockArgs<ExtArgs>
   site?: boolean | Prisma.User$siteArgs<ExtArgs>
@@ -1271,9 +1490,11 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   active?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  stateId?: boolean
   districtId?: boolean
   blockId?: boolean
   siteId?: boolean
+  state?: boolean | Prisma.User$stateArgs<ExtArgs>
   district?: boolean | Prisma.User$districtArgs<ExtArgs>
   block?: boolean | Prisma.User$blockArgs<ExtArgs>
   site?: boolean | Prisma.User$siteArgs<ExtArgs>
@@ -1289,9 +1510,11 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   active?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  stateId?: boolean
   districtId?: boolean
   blockId?: boolean
   siteId?: boolean
+  state?: boolean | Prisma.User$stateArgs<ExtArgs>
   district?: boolean | Prisma.User$districtArgs<ExtArgs>
   block?: boolean | Prisma.User$blockArgs<ExtArgs>
   site?: boolean | Prisma.User$siteArgs<ExtArgs>
@@ -1307,13 +1530,15 @@ export type UserSelectScalar = {
   active?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  stateId?: boolean
   districtId?: boolean
   blockId?: boolean
   siteId?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password" | "phone" | "role" | "active" | "createdAt" | "updatedAt" | "districtId" | "blockId" | "siteId", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password" | "phone" | "role" | "active" | "createdAt" | "updatedAt" | "stateId" | "districtId" | "blockId" | "siteId", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  state?: boolean | Prisma.User$stateArgs<ExtArgs>
   district?: boolean | Prisma.User$districtArgs<ExtArgs>
   block?: boolean | Prisma.User$blockArgs<ExtArgs>
   site?: boolean | Prisma.User$siteArgs<ExtArgs>
@@ -1322,11 +1547,13 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  state?: boolean | Prisma.User$stateArgs<ExtArgs>
   district?: boolean | Prisma.User$districtArgs<ExtArgs>
   block?: boolean | Prisma.User$blockArgs<ExtArgs>
   site?: boolean | Prisma.User$siteArgs<ExtArgs>
 }
 export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  state?: boolean | Prisma.User$stateArgs<ExtArgs>
   district?: boolean | Prisma.User$districtArgs<ExtArgs>
   block?: boolean | Prisma.User$blockArgs<ExtArgs>
   site?: boolean | Prisma.User$siteArgs<ExtArgs>
@@ -1335,6 +1562,7 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
+    state: Prisma.$StatePayload<ExtArgs> | null
     district: Prisma.$DistrictPayload<ExtArgs> | null
     block: Prisma.$BlockPayload<ExtArgs> | null
     site: Prisma.$SitePayload<ExtArgs> | null
@@ -1351,6 +1579,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     active: boolean
     createdAt: Date
     updatedAt: Date
+    stateId: string | null
     districtId: string | null
     blockId: string | null
     siteId: string | null
@@ -1748,6 +1977,7 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  state<T extends Prisma.User$stateArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$stateArgs<ExtArgs>>): Prisma.Prisma__StateClient<runtime.Types.Result.GetResult<Prisma.$StatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   district<T extends Prisma.User$districtArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$districtArgs<ExtArgs>>): Prisma.Prisma__DistrictClient<runtime.Types.Result.GetResult<Prisma.$DistrictPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   block<T extends Prisma.User$blockArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$blockArgs<ExtArgs>>): Prisma.Prisma__BlockClient<runtime.Types.Result.GetResult<Prisma.$BlockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   site<T extends Prisma.User$siteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$siteArgs<ExtArgs>>): Prisma.Prisma__SiteClient<runtime.Types.Result.GetResult<Prisma.$SitePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -1791,6 +2021,7 @@ export interface UserFieldRefs {
   readonly active: Prisma.FieldRef<"User", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly stateId: Prisma.FieldRef<"User", 'String'>
   readonly districtId: Prisma.FieldRef<"User", 'String'>
   readonly blockId: Prisma.FieldRef<"User", 'String'>
   readonly siteId: Prisma.FieldRef<"User", 'String'>
@@ -2187,6 +2418,25 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Users to delete.
    */
   limit?: number
+}
+
+/**
+ * User.state
+ */
+export type User$stateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the State
+   */
+  select?: Prisma.StateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the State
+   */
+  omit?: Prisma.StateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StateInclude<ExtArgs> | null
+  where?: Prisma.StateWhereInput
 }
 
 /**

@@ -53,6 +53,10 @@ model User {
   updatedAt DateTime @updatedAt
 
   // relations based on role
+
+  stateId String?
+  state  State? @relation(fields: [stateId], references: [id])
+
   districtId String?
   district   District? @relation(fields: [districtId], references: [id])
 
@@ -77,6 +81,8 @@ model State {
   code      String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  users  User[]
 
   districts District[]
 

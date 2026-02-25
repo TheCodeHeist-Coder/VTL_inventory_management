@@ -1277,6 +1277,7 @@ export const UserScalarFieldEnum = {
   active: 'active',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  stateId: 'stateId',
   districtId: 'districtId',
   blockId: 'blockId',
   siteId: 'siteId'
