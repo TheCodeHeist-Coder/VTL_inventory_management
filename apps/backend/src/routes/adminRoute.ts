@@ -1,6 +1,11 @@
 import { Router } from "express";
 import { authenticate, authorize } from "../middleware/auth.js";
-import { createBlockController, createDistrictController, createStateController, createUserController, deleteBlockController, deleteDistrictController, deleteStateController, deleteUserController, getAllBlocksController, getAllDistrictsController, getAllStatesController, getUserController, updateBlockController, updateDistrictController, updateStateController, updateUserController } from "../controllers/adminController.js";
+import { createUserController, deleteUserController, getUserController, updateUserController } from "../controllers/admin/user.js";
+import { createStateController, deleteStateController, getAllStatesController, updateStateController } from "../controllers/admin/state.js";
+import { createDistrictController, deleteDistrictController, getAllDistrictsController, updateDistrictController } from "../controllers/admin/district.js";
+import { createBlockController, deleteBlockController, getAllBlocksController, updateBlockController } from "../controllers/admin/block.js";
+import { createSiteController, deleteSiteController, getAllSitesController, updateSiteController } from "../controllers/admin/sites.js";
+import { getInventoriesController, inventoryItemsController } from "../controllers/admin/inventory.js";
 
 const router = Router();
 
@@ -82,6 +87,33 @@ router.delete("/blocks/:id", deleteBlockController)
 
 
 
+
+//! site management
+
+/// to get all the sites
+router.get("/sites", getAllSitesController)
+
+// to create a site
+router.post("/sites", createSiteController)
+
+// to edit or update a site
+router.put("/sites/:id", updateSiteController)
+
+/// to delete a site
+router.delete("/sites/:id", deleteSiteController)
+
+
+
+
+
+//! Inventory Management
+
+// to get a inventory
+router.get("/inventories", getInventoriesController)
+
+
+// to manage items in inventory
+router.post("/inventory-items", inventoryItemsController)
 
 
 export default router;
