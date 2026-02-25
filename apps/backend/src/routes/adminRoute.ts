@@ -1,10 +1,11 @@
 import { Router } from "express";
 import { authenticate, authorize } from "../middleware/auth.js";
-import { createUserController, deleteUserController, getUserController, updateUserController } from "../controllers/adminController.js";
+import { createDistrictController, createStateController, createUserController, deleteDistrictController, deleteStateController, deleteUserController, getAllDistrictsController, getAllStatesController, getUserController, updateDistrictController, updateStateController, updateUserController } from "../controllers/adminController.js";
 
 const router = Router();
 
 
+//! USER MANAGEMENT ROUTES
 
 // authentication routes of admin
 router.use(authenticate, authorize('ADMIN'));
@@ -19,10 +20,49 @@ router.post("/users", createUserController)
 
 
 // to update the details of a user
-router.put("users/:id", updateUserController)
+router.put("/users/:id", updateUserController)
 
 // to delete a user (soft delete by making active false)
 
 router.delete("/users/:id", deleteUserController)
+
+
+
+
+
+
+
+
+//! STATE MANAGEMENT ROUTES
+
+// state management
+router.get("/states", getAllStatesController)
+
+/// create states
+router.post("/states", createStateController)
+
+/// update state
+router.put("/states/:id", updateStateController)
+
+// delete state
+router.delete("/states/:id", deleteStateController)
+
+
+
+//! DISTRICT MANAGEMENT ROUTES
+
+// to get all the districts of a state
+router.get("/districts", getAllDistrictsController)
+
+/// to create a district
+router.post("/districts", createDistrictController)
+
+// to update or edit the district
+router.put("/districts/:id", updateDistrictController)
+
+// deletes the district
+router.delete("/districts/:id", deleteDistrictController)
+
+
 
 export default router;

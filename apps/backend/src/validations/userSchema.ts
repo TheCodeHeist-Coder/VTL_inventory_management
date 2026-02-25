@@ -15,5 +15,6 @@ export const userSchema = z.object({
     role: z.enum(['ADMIN','STATE_HEAD', 'DISTRICT_HEAD', 'BLOCK_MANAGER', 'STORE_MANAGER', 'SITE_ENGINEER']),
     districtId: string().optional(),
     blockId: string().optional(),
-    siteId: string().optional()
+    siteId: string().optional(),
+    stateId: string().optional()
 })
