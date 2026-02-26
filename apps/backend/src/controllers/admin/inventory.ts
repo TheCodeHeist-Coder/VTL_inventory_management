@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { prisma } from "@repo/db"
 
 
+
 // to get all the inventories
 export const getInventoriesController = async (req: Request, res: Response) => {
     try {
@@ -51,13 +52,49 @@ export const getInventoriesController = async (req: Request, res: Response) => {
 export const inventoryItemsController = async (req: Request, res: Response) => {
 
     try {
-        
-    
+        const { inventoryId, materialName, quantity, unit, minThreshold } = req.body;
 
+        const item = await prisma.inventoryItem.create({
+            data: {
+                inventoryId,
+                materialName,
+                quantity,
+                unit,
+                minThreshold: minThreshold || 0
+            }
+        });
 
+        res.status(201).json(item);
     } catch (error) {
-        
+        console.log('Error while adding items', error);
+        res.status(500).json({ error: 'Internal Server Error' })
     }
 
 }
-   
+
+
+
+// to update or edit inventory items
+
+export const updateInventoryItems = async (req: Request, res: Response) => {
+    try {
+        const { materialName, quantity, unit, minThreshold } = req.body;
+
+        const data: Record<string, any> = {};
+
+        if (materialName !== undefined) data.materialName = materialName;
+        if (quantity !== undefined) data.quantity = quantity;
+        if (unit !== undefined) data.unit = unit;
+        if (minThreshold !== undefined) data.minThreshold = minThreshold || 0;
+
+        const item = await prisma.inventoryItem.update({
+            where: { id: req.params.id as string },
+            data
+        })
+        res.json(item)
+
+    } catch (error) {
+        console.log('Error while updateing items', error);
+        res.status(500).json({ error: 'Internal Server Error' })
+    }
+}

@@ -5,7 +5,8 @@ import { createStateController, deleteStateController, getAllStatesController, u
 import { createDistrictController, deleteDistrictController, getAllDistrictsController, updateDistrictController } from "../controllers/admin/district.js";
 import { createBlockController, deleteBlockController, getAllBlocksController, updateBlockController } from "../controllers/admin/block.js";
 import { createSiteController, deleteSiteController, getAllSitesController, updateSiteController } from "../controllers/admin/sites.js";
-import { getInventoriesController, inventoryItemsController } from "../controllers/admin/inventory.js";
+import { getInventoriesController, inventoryItemsController, updateInventoryItems } from "../controllers/admin/inventory.js";
+import { adminDashboardController } from "../controllers/admin/dashboard.js";
 
 const router = Router();
 
@@ -114,6 +115,14 @@ router.get("/inventories", getInventoriesController)
 
 // to manage items in inventory
 router.post("/inventory-items", inventoryItemsController)
+
+// to edit or update items
+router.put("/inventory-items/:id", updateInventoryItems)
+
+
+
+//! ADMIN DASHBOARD
+router.get("/dashboard", adminDashboardController)
 
 
 export default router;
