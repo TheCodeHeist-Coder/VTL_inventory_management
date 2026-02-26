@@ -86,3 +86,39 @@ export const adminDashboardController = async (req: Request, res: Response) => {
 
 
 // to get the requests for dashboard
+
+export const getAllRequestController = async (req: Request, res: Response) => {
+    try {
+        const page = Math.max(1, parseInt(req.query.page as string) || 1);
+        const limit = Math.min(100, Math.max(1, parseInt(req.query.limit as string) || 20));
+        const skip = (page - 1) * limit;
+
+        const [requests, total] = await Promise.all([
+            prisma.materialRequest.findMany({
+                orderBy: { createdAt: 'desc' },
+                include: {
+                    siteEngineer: { select: { name: true, email: true, phone: true } },
+                    block: { select: { id: true, name: true, districtId: true, district: { select: { id: true, name: true } } } },
+                    site: { select: { id: true, name: true } },
+                    items: true
+                },
+                skip,
+                take: limit
+            }),
+            prisma.materialRequest.count()
+        ])
+        res.json({
+            data: requests,
+            pagination: {
+                page,
+                limit,
+                total,
+                totalPage: Math.ceil(total / limit)
+            }
+        })
+    } catch (error) {
+        console.error('Error while fetching requests', error);
+        res.status(500).json({ error: 'Internal Server error.' });
+
+    }
+}

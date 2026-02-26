@@ -6,7 +6,7 @@ import { createDistrictController, deleteDistrictController, getAllDistrictsCont
 import { createBlockController, deleteBlockController, getAllBlocksController, updateBlockController } from "../controllers/admin/block.js";
 import { createSiteController, deleteSiteController, getAllSitesController, updateSiteController } from "../controllers/admin/sites.js";
 import { getInventoriesController, inventoryItemsController, updateInventoryItems } from "../controllers/admin/inventory.js";
-import { adminDashboardController } from "../controllers/admin/dashboard.js";
+import { adminDashboardController, getAllRequestController } from "../controllers/admin/dashboard.js";
 
 const router = Router();
 
@@ -123,6 +123,8 @@ router.put("/inventory-items/:id", updateInventoryItems)
 
 //! ADMIN DASHBOARD
 router.get("/dashboard", adminDashboardController)
+
+router.get("/requests", getAllRequestController)
 
 
 export default router;
