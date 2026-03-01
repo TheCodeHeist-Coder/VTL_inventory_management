@@ -13,7 +13,7 @@ const app: Express = express();
 app.use(cors())
 app.use(express.json());
 
-
+console.log("ENV at startup:", process.env.DATABASE_URL);
 
 // admin route
 app.use("/api/v1/admin", adminRoute)

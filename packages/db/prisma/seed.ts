@@ -272,20 +272,6 @@ async function main() {
     });
     console.log('✅ Sample replenish requests seeded');
 
-    // Reset PostgreSQL sequences so new inserts get correct IDs
-    await prisma.$executeRawUnsafe(`SELECT setval(pg_get_serial_sequence('states', 'id'), (SELECT MAX(id) FROM states))`);
-    await prisma.$executeRawUnsafe(`SELECT setval(pg_get_serial_sequence('districts', 'id'), (SELECT MAX(id) FROM districts))`);
-    await prisma.$executeRawUnsafe(`SELECT setval(pg_get_serial_sequence('blocks', 'id'), (SELECT MAX(id) FROM blocks))`);
-    await prisma.$executeRawUnsafe(`SELECT setval(pg_get_serial_sequence('sites', 'id'), (SELECT MAX(id) FROM sites))`);
-    await prisma.$executeRawUnsafe(`SELECT setval(pg_get_serial_sequence('inventories', 'id'), (SELECT MAX(id) FROM inventories))`);
-    await prisma.$executeRawUnsafe(`SELECT setval(pg_get_serial_sequence('users', 'id'), (SELECT MAX(id) FROM users))`);
-    await prisma.$executeRawUnsafe(`SELECT setval(pg_get_serial_sequence('material_requests', 'id'), (SELECT MAX(id) FROM material_requests))`);
-    await prisma.$executeRawUnsafe(`SELECT setval(pg_get_serial_sequence('material_request_items', 'id'), (SELECT MAX(id) FROM material_request_items))`);
-    await prisma.$executeRawUnsafe(`SELECT setval(pg_get_serial_sequence('inventory_items', 'id'), (SELECT MAX(id) FROM inventory_items))`);
-    await prisma.$executeRawUnsafe(`SELECT setval(pg_get_serial_sequence('replenish_requests', 'id'), (SELECT MAX(id) FROM replenish_requests))`);
-    await prisma.$executeRawUnsafe(`SELECT setval(pg_get_serial_sequence('replenish_request_items', 'id'), (SELECT MAX(id) FROM replenish_request_items))`);
-    console.log('✅ PostgreSQL sequences reset');
-
     // Print login credentials
     console.log('\n📋 ====== LOGIN CREDENTIALS ======');
     console.log('All passwords: password123\n');
