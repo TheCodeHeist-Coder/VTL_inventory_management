@@ -6,8 +6,8 @@ import DistrictsPage from "./DistrictsPage";
 import SitesPage from "./SitesPage";
 import InventoriesPage from "./InventoriesPage";
 import RequestsPage from "./RequestsPage";
-import Layout from "../../components/Layout";
-import { NavItem } from "../../types";
+import Layout from "../../../components/Layout";
+import { NavItem } from "../../../types";
 
 
 

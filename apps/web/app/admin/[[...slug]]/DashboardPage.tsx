@@ -1,14 +1,14 @@
 'use client'
 
 import { useEffect, useState } from "react"
-import api from "../../api";
+import api from "../../../api";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { MdOutlineAccountBalance } from "react-icons/md";
 import { FaRegBuilding, FaSitemap } from "react-icons/fa";
 import { TbBuildingCommunity } from "react-icons/tb";
 import { HiUsers } from "react-icons/hi";
 import { FaCodePullRequest } from "react-icons/fa6";
-import StatusBadge from "../../components/StatusBedge";
+import StatusBadge from "../../../components/StatusBedge";
 
 export default function DashboardPage() {
 
