@@ -33,8 +33,13 @@ export default function StatesPage() {
         setTimeout(() => setMsg(null), 3000);
     };
 
-    if (loading) return <div className="flex items-center justify-center p-12"><div className="w-10 h-10 border-4 border-brand-200 border-t-brand-900 rounded-full animate-spin" /></div>;
-
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center p-12">
+                <div className="w-10 h-10 border-4 border-gray-200 border-t-gray-950 rounded-full animate-spin" />
+            </div>
+        )
+    }
     return (
         <>
             <div className="mb-8" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
