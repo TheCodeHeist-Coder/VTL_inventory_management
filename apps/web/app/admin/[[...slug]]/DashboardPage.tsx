@@ -123,7 +123,7 @@ export default function DashboardPage() {
                     { icon: <HiUsers className="w-9 h-9 font-extralight " />, val: data.stats.users, label: 'Active Users' },
                     { icon: <FaCodePullRequest className="w-9 h-9 font-extralight " />, val: data.stats.totalRequests, label: 'Total Requests' },
                 ].map(s => (
-                    <div className="bg-white shadow-xl rounded-xl flex flex-col gap-1 justify-center pl-4 py-5  overflow-hidden" >
+                    <div key={s.label} className="bg-white shadow-xl rounded-xl flex flex-col gap-1 justify-center pl-4 py-5  overflow-hidden" >
                         <div className="mb-1"> {s.icon} </div>
                         <div className="text-2xl font-semibold tracking-wide text-gray-800 ">{s.label}</div>
                         <div className="text-3xl font-extrabold leading-none mb-1 text-brand-900">{s.val}</div>
