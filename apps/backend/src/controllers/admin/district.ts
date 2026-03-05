@@ -22,7 +22,21 @@ export const getAllDistrictsController = async (req: Request, res: Response) => 
             }
         });
 
-        res.json(districts)
+        const formattedDistricts = districts.map((district) => {
+
+            const blockUsers = district.blocks.flatMap(block =>
+                block.sites.flatMap(site => site.users)
+            );
+
+            return {
+                ...district,
+                allMembers: [...district.users, ...blockUsers],
+                totalMembers: district.users.length + blockUsers.length
+            };
+        });
+
+        res.json(formattedDistricts)
+
     } catch (error) {
         console.log('Error while fetching districts', error)
         res.status(500).json({ error: 'Internal Server Error' })
