@@ -3,6 +3,7 @@
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { NavItem } from '../types';
+import { useEffect, useState } from 'react';
 
 const roleConfig: Record<string, { label: string; icon: string; color: string }> = {
     ADMIN: { label: 'Administrator', icon: '⚙️', color: '#6366f1' },
@@ -21,11 +22,17 @@ interface LayoutProps {
 export default function Layout({ children, navItems }: LayoutProps) {
     const router = useRouter();
     const pathname = usePathname();
+  
+    const [user, setUser] = useState<any>(null);
+    const [mounted, setMounted] = useState(false);
 
-    const user = typeof window !== 'undefined'
-        ? JSON.parse(localStorage.getItem('user') || '{}')
-        : {};
-    const config = roleConfig[user.role] || {};
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+        setMounted(true);
+    }, []);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -33,7 +40,16 @@ export default function Layout({ children, navItems }: LayoutProps) {
         router.push('/login');
     };
 
-    const initials = user.name?.split(' ').map((n: string) => n[0]).join('').slice(0, 2) || '??';
+    if (!mounted) return null; 
+
+
+   const config = roleConfig[user?.role] || {};
+    const initials =
+        user?.name?.split(' ')
+            .map((n: string) => n[0])
+            .join('')
+            .slice(0, 2) || '??';
+
 
     return (
         <div className="flex  min-h-screen bg-brand-50 text-brand-900 font">
