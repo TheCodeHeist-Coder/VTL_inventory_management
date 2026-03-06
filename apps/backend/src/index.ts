@@ -6,6 +6,7 @@ import cors from "cors";
 import loginRoute from "./routes/authRoute.js";
 import adminRoute from "./routes/adminRoute.js";
 import siteEnggRoutes from './routes/siteEnggRoute.js'
+import blockManagerRoutes from './routes/blockManagerRoute.js'
 const app: Express = express();
 
 
@@ -21,8 +22,10 @@ app.use("/api/v1/auth", loginRoute)
 app.use("/api/v1/admin", adminRoute)
 
 // siteEngg route
-
 app.use("/api/v1/siteEngg", siteEnggRoutes)
+
+// block-manager route
+app.use("/api/v1/block-manager", blockManagerRoutes)
 
 
 
