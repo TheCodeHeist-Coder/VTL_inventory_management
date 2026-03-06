@@ -1,7 +1,5 @@
 import { prisma } from "@repo/db";
 import { Request, Response } from "express"
-import { Result } from "../../../../packages/db/dist/generated/prisma/internal/prismaNamespace.js";
-import { any, string } from "zod";
 
 
 
@@ -31,7 +29,7 @@ export const siteEnggDashboardController = async(req:Request, res:Response) => {
             where: {
                 id: user.blockId
             },
-            select: {name: true, district: {select: {name: true}}}
+            select: { name: true, districtId: true, district: { select: { id: true, name: true } } }
         });
 
         const site = user.siteId ? await prisma.site.findUnique({
@@ -54,12 +52,24 @@ export const siteEnggDashboardController = async(req:Request, res:Response) => {
             rejected: requests.filter(r => ['REJECTED_BY_BM', 'REJECTED_BY_DH', 'CANCELLED'].includes(r.status)).length
         }
 
-        res.json({
-            block,
-            site,
-            requests,
-            stats
-        })
+        const [storeManagers, blockManagers, districtHeads] = await Promise.all([
+            prisma.user.findMany({
+                where: { blockId: user.blockId, role: 'STORE_MANAGER', active: true },
+                select: { id: true, name: true, phone: true, email: true }
+            }),
+            prisma.user.findMany({
+                where: { blockId: user.blockId, role: 'BLOCK_MANAGER', active: true },
+                select: { id: true, name: true, phone: true, email: true }
+            }),
+            block?.districtId ? prisma.user.findMany({
+                where: { districtId: block.districtId, role: 'DISTRICT_HEAD', active: true },
+                select: { id: true, name: true, phone: true, email: true }
+            }) : Promise.resolve([])
+        ]);
+
+        const contacts = { storeManagers, blockManagers, districtHeads };
+
+        res.json({ block, site, requests, stats, contacts });
 
 
 
