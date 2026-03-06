@@ -52,7 +52,7 @@ export default function Layout({ children, navItems }: LayoutProps) {
 
 
     return (
-        <div className="flex  min-h-screen bg-brand-50 text-brand-900 font">
+        <div className="flex  min-h-screen bg-gray-50 text-brand-900 font">
             <aside className="w-[260px]  border-r border-brand-200 p-6 flex flex-col fixed inset-y-0 z-50 transition-all shadow-sm">
                 <div className="flex items-center gap-3 px-2 pb-6 border-b border-brand-200 mb-6">
                     

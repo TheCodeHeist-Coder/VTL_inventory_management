@@ -39,7 +39,7 @@ export const adminDashboardController = async (req: Request, res: Response) => {
             orderBy: { createdAt: 'desc' },
             include: {
                 siteEngineer: { select: { name: true, phone: true } },
-                block: { select: { name: true, district: { select: { name: true } } } },
+                block: { include: { district: { include: { state: { select: { name: true } } } } } },
                 site: { select: { id: true, name: true } },
                 items: true
             }
@@ -98,7 +98,7 @@ export const getAllRequestController = async (req: Request, res: Response) => {
                 orderBy: { createdAt: 'desc' },
                 include: {
                     siteEngineer: { select: { name: true, email: true, phone: true } },
-                    block: { select: { id: true, name: true, districtId: true, district: { select: { id: true, name: true } } } },
+                    block: { include: { district: { include: { state: { select: { id: true, name: true } } } } } },
                     site: { select: { id: true, name: true } },
                     items: true
                 },
