@@ -9,23 +9,29 @@ import { userSchema } from "../../validations/userSchema.js";
 export const getUserController = async (req: Request, res: Response) => {
 
     try {
-        const users = await prisma.user.findMany({
-            select: {
-                id: true, name: true, email: true, phone: true, role: true, active: true, stateId: true, districtId: true, blockId: true, siteId: true, createdAt: true,
-                state: { select: { id: true, name: true } },
-                district: { select: { id: true, name: true, state: { select: { id: true, name: true } } } },
-                block: { select: { id: true, name: true } },
-                site: { select: { id: true, name: true } }
-            },
-            orderBy: { createdAt: 'desc' }
-        });
+        const page = Math.max(1, parseInt(req.query.page as string) || 1);
+        const limit = Math.min(100, Math.max(1, parseInt(req.query.limit as string) || 20));
+        const skip = (page - 1) * limit;
 
-        res.json(users)
+        const [users, total] = await Promise.all([
+            prisma.user.findMany({
+                select: {
+                    id: true, name: true, email: true, phone: true, role: true, active: true, stateId: true, districtId: true, blockId: true, siteId: true, createdAt: true,
+                    state: { select: { id: true, name: true } },
+                    district: { select: { id: true, name: true, state: { select: { id: true, name: true } } } },
+                    block: { select: { id: true, name: true } },
+                    site: { select: { id: true, name: true } }
+                },
+                orderBy: { createdAt: 'desc' },
+                skip,
+                take: limit
+            }),
+            prisma.user.count()
+        ]);
+        res.json({ data: users, pagination: { page, limit, total, totalPages: Math.ceil(total / limit) } });
     } catch (error) {
-
-        console.log('Error in fetching users', error)
-        res.status(500).json({ error: "Internal Server Error" })
-
+        console.error('Get users error:', error);
+        res.status(500).json({ error: 'Internal Server error.' });
     }
 
 
