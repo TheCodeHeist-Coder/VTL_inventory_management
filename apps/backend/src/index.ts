@@ -7,6 +7,7 @@ import loginRoute from "./routes/authRoute.js";
 import adminRoute from "./routes/adminRoute.js";
 import siteEnggRoutes from './routes/siteEnggRoute.js'
 import blockManagerRoutes from './routes/blockManagerRoute.js'
+import districtHeadRoutes from './routes/districtHeadRoute.js'
 const app: Express = express();
 
 
@@ -28,6 +29,8 @@ app.use("/api/v1/siteEngg", siteEnggRoutes)
 app.use("/api/v1/block-manager", blockManagerRoutes)
 
 
+// district-head route
+app.use('/api/v1/district-head', districtHeadRoutes)
 
 
 const PORT = process.env.PORT || 3000;

@@ -6,7 +6,8 @@ declare global {
             id: string;
             role: string;
             blockId: string | null;
-            siteId: string | null
+            siteId: string | null;
+            districtId: string | null;
         }
 
         interface Request {
