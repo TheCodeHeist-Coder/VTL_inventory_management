@@ -92,7 +92,7 @@ export default function DashboardPage() {
 
 
             {/*  state filter*/}
-            <div className="bg-white px-4 py-2  rounded-xl shadow-sm overflow-hidden mb-6">
+            <div className="bg-white px-4 py-2  rounded-xl shadow-lg overflow-hidden mb-6">
                 <div className="">
 
                     <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -116,16 +116,16 @@ export default function DashboardPage() {
             <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-5 mb-8">
 
                 {[
-                    { icon: <MdOutlineAccountBalance className="w-9 h-9 font-extralight " />, val: data.stats.states, label: 'States', bg: 'linear-gradient(135deg, #7c3aed22, #7c3aed11)' },
+                    { icon: <MdOutlineAccountBalance className="w-9 h-9 font-extralight text-gray-800 " />, val: data.stats.states, label: 'States', bg: 'linear-gradient(135deg, #7c3aed22, #7c3aed11)' },
                     { icon: <FaRegBuilding className="w-8 h-8 text-gray-800 " />, val: data.stats.districts, label: 'Districts' },
-                    { icon: <TbBuildingCommunity className="w-9 h-9 font-extralight " />, val: data.stats.blocks, label: 'Blocks' },
-                    { icon: <FaSitemap className="w-9 h-9 font-extralight " />, val: data.stats.sites || 0, label: 'Sites' },
-                    { icon: <HiUsers className="w-9 h-9 font-extralight " />, val: data.stats.users, label: 'Active Users' },
-                    { icon: <FaCodePullRequest className="w-9 h-9 font-extralight " />, val: data.stats.totalRequests, label: 'Total Requests' },
+                    { icon: <TbBuildingCommunity className="w-9 h-9 font-extralight text-gray-800 " />, val: data.stats.blocks, label: 'Blocks' },
+                    { icon: <FaSitemap className="w-9 h-9 font-extralight text-gray-800 " />, val: data.stats.sites || 0, label: 'Sites' },
+                    { icon: <HiUsers className="w-9 h-9 font-extralight text-gray-800  " />, val: data.stats.users, label: 'Active Users' },
+                    { icon: <FaCodePullRequest className="w-9 h-9 font-extralight text-gray-800 " />, val: data.stats.totalRequests, label: 'Total Requests' },
                 ].map(s => (
-                    <div key={s.label} className="bg-white shadow-xl rounded-xl flex flex-col gap-1 justify-center pl-4 py-5  overflow-hidden" >
+                    <div key={s.label} className="bg-white shadow-xl border border-gray-300 rounded-xl flex flex-col gap-1 justify-center pl-4 py-5  overflow-hidden" >
                         <div className="mb-1"> {s.icon} </div>
-                        <div className="text-2xl font-semibold tracking-wide text-gray-800 ">{s.label}</div>
+                        <div className="text-2xl font-semibold tracking-wide text-gray-950 ">{s.label}</div>
                         <div className="text-3xl font-extrabold leading-none mb-1 text-brand-900">{s.val}</div>
                     </div>
                 ))}
@@ -138,7 +138,7 @@ export default function DashboardPage() {
                     <div className="px-6 py-5 border-b border-gray-400 bg-brand-50/50"><h3 className="text-base tracking-wider font-bold text-gray-950"> Statewise Overview</h3></div>
                     <div className="p-6"><div className="overflow-x-auto -mx-6 px-6">
                         <table className="w-full text-left border-collapse">
-                            <thead><tr className="border-b border-gray-400"><th className="pb-3 text-xs font-semibold text-brand-400 uppercase tracking-wider">State</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Districts</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">District Names</th></tr></thead>
+                            <thead><tr className="border-b border-gray-300"><th className="pb-3 text-xs font-semibold text-brand-400 uppercase tracking-wider">State</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Districts</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">District Names</th></tr></thead>
                             <tbody>{data.statesData.map((s: any) => (
                                 <tr key={s.id}>
                                     <td className="py-4 pl-4 text-sm text-brand-600"><strong> {s.name}</strong> <span style={{ color: '#64748b', fontSize: '12px' }}>({s.code})</span></td>
