@@ -47,10 +47,10 @@ export default function StatesPage() {
                 <button className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-brand-900 text-gray-950 border border-gray-500 cursor-pointer hover:bg-gray-200 rounded-lg font-semibold hover:bg-brand-800 transition-all shadow-lg" onClick={() => { setEditState(null); setForm({ name: '', code: '' }); setShowModal(true); }}> Add State</button>
             </div>
             {msg && <div className={`p-4 rounded-lg text-sm font-medium mb-5 border ${msg.type === 'success' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-rose-50 text-rose-700 border-rose-200'}`}>{msg.type === 'success' ? '✅' : '⚠️'} {msg.text}</div>}
-            <div className="bg-white border border-brand-200 rounded-xl shadow-sm overflow-hidden"><div className="p-6">
+            <div className="bg-white border border-gray-300 rounded-xl shadow-sm overflow-hidden"><div className="p-6">
                 {states.length > 0 ? (<div className="overflow-x-auto -mx-6 px-6">
                     <table className="w-full text-left border-collapse">
-                        <thead><tr className="border-b border-brand-200"><th className="pb-3 text-xs font-semibold text-brand-400 uppercase tracking-wider">State Name</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Code</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Districts</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Actions</th></tr></thead>
+                        <thead><tr className="border-b border-gray-400"><th className="pb-3 text-xs font-semibold text-brand-400 uppercase tracking-wider">State Name</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Code</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Districts</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Actions</th></tr></thead>
                         <tbody>{states.map(s => (
                             <tr key={s.id}>
                                 <td className="py-4 pl-4 text-sm text-brand-600 tracking-wider"><strong> {s.name}</strong></td>
@@ -65,12 +65,12 @@ export default function StatesPage() {
 
             {showModal && (
                 <div className="fixed inset-0 bg-brand-900/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={(e: any) => e.target === e.currentTarget && setShowModal(false)}>
-                    <div className="bg-white border border-brand-200 rounded-2xl w-full max-w-xl max-h-[85vh] overflow-y-auto shadow-xl p-6">
+                    <div className="bg-gray-100 border border-gray-400 rounded-2xl w-full max-w-xl max-h-[85vh] overflow-y-auto shadow-xl p-6">
                         <h2 className="text-lg font-bold text-brand-900 mb-5">{editState ? ' Edit State' : ' New State'}</h2>
                         <form onSubmit={handleSubmit}>
-                            <div className="mb-5"><label className="block text-xs font-bold text-brand-500 uppercase tracking-wider mb-1.5">State Name</label><input className="w-full px-4 py-2.5 bg-white border border-brand-200 rounded-lg text-sm text-brand-900 focus:outline-none focus:ring-2 focus:ring-brand-900/20 transition-all" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} required placeholder="e.g. Uttar Pradesh" /></div>
-                            <div className="mb-5"><label className="block text-xs font-bold text-brand-500 uppercase tracking-wider mb-1.5">State Code</label><input className="w-full px-4 py-2.5 bg-white border border-brand-200 rounded-lg text-sm text-brand-900 focus:outline-none focus:ring-2 focus:ring-brand-900/20 transition-all" value={form.code} onChange={e => setForm({ ...form, code: e.target.value })} required placeholder="e.g. UP" /></div>
-                            <div className="flex gap-3 justify-end mt-6 pt-6 border-t border-brand-100">
+                            <div className="mb-5"><label className="block text-xs font-bold text-brand-500 uppercase tracking-wider mb-1.5">State Name</label><input className="w-full px-4 py-2.5 bg-white border border-gray-400 rounded-lg text-sm text-brand-900 focus:outline-none focus:ring-2 focus:ring-brand-900/20 transition-all" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} required placeholder="e.g. Uttar Pradesh" /></div>
+                            <div className="mb-5"><label className="block text-xs font-bold text-brand-500 uppercase tracking-wider mb-1.5">State Code</label><input className="w-full px-4 py-2.5 bg-white border border-gray-400 rounded-lg text-sm text-brand-900 focus:outline-none focus:ring-2 focus:ring-brand-900/20 transition-all" value={form.code} onChange={e => setForm({ ...form, code: e.target.value })} required placeholder="e.g. UP" /></div>
+                            <div className="flex gap-3 justify-end mt-6 pt-6 border-t border-gray-300">
                                 <button type="button" className="px-4 cursor-pointer active:scale-95 py-2 border border-brand-200 text-brand-600 rounded-lg" onClick={() => setShowModal(false)}>Cancel</button>
                                 <button type="submit" className="px-4 cursor-pointer active:scale-95 border border-gray-800 hover:bg-gray-200 py-2 bg-brand-900 text-black rounded-lg font-medium hover:bg-brand-800 shadow-sm">{editState ? 'Update' : 'Create'}</button>
                             </div>

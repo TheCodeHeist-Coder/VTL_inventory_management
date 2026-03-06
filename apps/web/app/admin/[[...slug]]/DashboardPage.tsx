@@ -134,11 +134,11 @@ export default function DashboardPage() {
 
             {/* statewise breaksown */}
             {data.statesData?.length > 0 && (
-                <div className="bg-white shadow-xl border border-brand-200 rounded-xl  overflow-hidden mb-8">
-                    <div className="px-6 py-5 border-b border-brand-200 bg-brand-50/50"><h3 className="text-base tracking-wider font-bold text-gray-950"> Statewise Overview</h3></div>
+                <div className="bg-white shadow-xl border border-gray-300 rounded-xl  overflow-hidden mb-8">
+                    <div className="px-6 py-5 border-b border-gray-400 bg-brand-50/50"><h3 className="text-base tracking-wider font-bold text-gray-950"> Statewise Overview</h3></div>
                     <div className="p-6"><div className="overflow-x-auto -mx-6 px-6">
                         <table className="w-full text-left border-collapse">
-                            <thead><tr className="border-b border-brand-200"><th className="pb-3 text-xs font-semibold text-brand-400 uppercase tracking-wider">State</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Districts</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">District Names</th></tr></thead>
+                            <thead><tr className="border-b border-gray-400"><th className="pb-3 text-xs font-semibold text-brand-400 uppercase tracking-wider">State</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Districts</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">District Names</th></tr></thead>
                             <tbody>{data.statesData.map((s: any) => (
                                 <tr key={s.id}>
                                     <td className="py-4 pl-4 text-sm text-brand-600"><strong> {s.name}</strong> <span style={{ color: '#64748b', fontSize: '12px' }}>({s.code})</span></td>
@@ -154,13 +154,13 @@ export default function DashboardPage() {
 
             {/* requessts through graph */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '24px', marginBottom: '32px' }}>
-                <div className="stat-bg-white border border-brand-200 rounded-xl shadow-xl overflow-hidden amber" style={{ margin: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '32px' }}>
+                <div className="bg-white border border-gray-300 rounded-xl shadow-xl overflow-hidden amber" style={{ margin: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '32px' }}>
                     <div className="text-3xl mb-3" style={{ fontSize: '36px' }}>⏳</div>
                     <div className="text-3xl font-extrabold leading-none mb-1 text-brand-900" style={{ fontSize: '48px' }}>{data.stats.pendingRequests}</div>
                     <div className="text-sm text-brand-500 font-medium" style={{ fontSize: '16px' }}>Pending Requests</div>
                 </div>
-                <div className="bg-white  border border-brand-200 rounded-xl shadow-xl overflow-hidden" style={{ margin: 0 }}>
-                    <div className="px-6 py-5 border-b border-brand-200 bg-brand-50/50"><h3 className="text-base font-bold text-brand-900">📊 Request Breakdown</h3></div>
+                <div className="bg-white  border border-gray-300 rounded-xl shadow-xl overflow-hidden" style={{ margin: 0 }}>
+                    <div className="px-6 py-5 border-b border-gray-400 bg-brand-50/50"><h3 className="text-base font-bold text-brand-900">📊 Request Breakdown</h3></div>
                     <div className="p-6" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                         {[
                             { label: 'Approved', value: data.stats.approvedRequests, color: '#3b82f6' },
@@ -188,8 +188,8 @@ export default function DashboardPage() {
 
 
             {/* Recent Requests */}
-            <div className="bg-white border border-brand-200 rounded-xl shadow-xl overflow-hidden mb-8">
-                <div className="px-6 py-5 border-b border-brand-200 flex items-center justify-between bg-brand-50/50">
+            <div className="bg-white border border-gray-300 rounded-xl shadow-xl overflow-hidden mb-8">
+                <div className="px-6 py-5 border-b border-gray-400 flex items-center justify-between bg-brand-50/50">
                     <h3 className="text-base font-bold text-brand-900">📦 Material Requests</h3>
                     <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                         <span style={{ fontSize: '13px', color: '#64748b' }}>{filterRequest.length} results</span>
@@ -202,10 +202,10 @@ export default function DashboardPage() {
                     {filterRequest.length > 0 ? (
                         <div className="overflow-x-auto -mx-6 px-6">
                             <table className="w-full text-left border-collapse">
-                                <thead><tr className="border-b border-brand-200"><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Site-Engineer</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Phone</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Site</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Block</th><th className="pb-3 text-xs font-semibold text-brand-400 uppercase tracking-wider">state</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Status</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Items</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Date</th></tr></thead>
+                               <thead><tr className="border-b border-gray-400"><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">State</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Engineer</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Phone</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Site</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Block</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">District</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Status</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Items</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Date</th></tr></thead>
                                 <tbody>{filterRequest.map((r: any) => (
                                     <tr key={r.id}>
-
+                                         <td className="py-4 pl-4 text-sm text-brand-600"><strong>🏛️ {r.block?.district?.state?.name || '—'}</strong></td>
                                         <td className="py-4 pl-4 text-sm text-brand-600">{r.siteEngineer?.name}</td>
                                         <td className="py-4 pl-4 text-sm text-brand-600">{r.siteEngineer?.phone || '—'}</td>
                                         <td className="py-4 pl-4 text-sm text-brand-600">{r.site?.name || '—'}</td>
@@ -224,12 +224,12 @@ export default function DashboardPage() {
 
 
             {/* Inventory */}
-            <div className="bg-white border border-brand-200 rounded-xl shadow-xl overflow-hidden">
-                <div className="px-6 py-5 border-b border-brand-200 bg-brand-50/50"><h3 className="text-base font-bold text-brand-900">🏪 Inventory Overview</h3></div>
+            <div className="bg-white border border-gray-300 rounded-xl shadow-xl overflow-hidden">
+                <div className="px-6 py-5 border-b border-gray-400 bg-brand-50/50"><h3 className="text-base font-bold text-brand-900">🏪 Inventory Overview</h3></div>
                 <div className="p-6 flex flex-col gap-8">
                     {data.inventories?.map((inv: any) => (
                         <div key={inv.id} className="mb-5 ">
-                            <h4 className="text-gray-900 max-w-60 flex items-center justify-center rounded-2xl py-1 mb-3 border font-extrabold border-gray-950">{inv.block?.name} — {inv.block?.district?.name}</h4>
+                            <h4 className="text-gray-900 max-w-60 flex items-center justify-center rounded-2xl py-1 mb-3 border font-extrabold border-gray-600">{inv.block?.name} — {inv.block?.district?.name}</h4>
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
                                 {inv.items?.map((item: any) => (
                                     <div key={item.id} className={`inventory-item ${item.quantity <= item.minThreshold ? 'low' : ''}`}>

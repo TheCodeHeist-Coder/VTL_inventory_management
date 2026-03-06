@@ -136,7 +136,7 @@ export default function UsersPage() {
             {msg && <div className={`p-4 rounded-lg text-sm font-medium mb-5 flex items-center gap-2.5 border ${msg.type === 'success' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-rose-50 text-rose-700 border-rose-200'}`}>{msg.type === 'success' ? '✅' : '⚠️'} {msg.text}</div>}
 
             {/* Filters */}
-            <div className="bg-white border border-brand-200 rounded-xl shadow-xl overflow-hidden mb-6">
+            <div className="bg-white border border-gray-300 rounded-xl shadow-xl overflow-hidden mb-6">
                 <div className="p-6" style={{ padding: '16px 24px' }}>
                     <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
                         <span style={{ fontSize: '14px', fontWeight: 600, color: '#94a3b8' }}>🔍 Filter by:</span>
@@ -146,14 +146,14 @@ export default function UsersPage() {
                             { val: filterBlock, set: (v: string) => setFilterBlock(v), opts: filteredBlks.map(b => ({ id: b.id, label: `📋 ${b.name}` })), placeholder: 'All Blocks' },
                         ].map((f, i) => (
                             <div key={i} style={{ minWidth: '160px' }}>
-                                <select className="w-full px-4 py-2.5 bg-white border border-brand-200 rounded-lg text-sm text-brand-900 focus:outline-none focus:ring-2 focus:ring-brand-900/20 transition-all cursor-pointer appearance-none" value={f.val} onChange={e => f.set(e.target.value)} style={{ padding: '8px 12px', fontSize: '13px' }}>
+                                <select className="w-full px-4 py-2.5 bg-white border border-gray-400 rounded-lg text-sm text-brand-900 focus:outline-none focus:ring-1 focus:ring-brand-900/20 transition-all cursor-pointer appearance-none" value={f.val} onChange={e => f.set(e.target.value)} style={{ padding: '8px 12px', fontSize: '13px' }}>
                                     <option value="">{f.placeholder}</option>
                                     {f.opts.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}
                                 </select>
                             </div>
                         ))}
                         <div style={{ minWidth: '180px' }}>
-                            <select className="w-full px-4 py-2.5 bg-white border border-brand-200 rounded-lg text-sm text-brand-900 cursor-pointer appearance-none" value={filterRole} onChange={e => setFilterRole(e.target.value)} style={{ padding: '8px 12px', fontSize: '13px' }}>
+                            <select className="w-full px-4 py-2.5 bg-white border border-gray-400 rounded-lg text-sm text-brand-900 cursor-pointer appearance-none" value={filterRole} onChange={e => setFilterRole(e.target.value)} style={{ padding: '8px 12px', fontSize: '13px' }}>
                                 <option value="">All Roles</option><option value="ADMIN">Admin</option><option value="STATE_HEAD">State Head</option><option value="DISTRICT_HEAD">District Head</option><option value="BLOCK_MANAGER">Block Manager</option><option value="STORE_MANAGER">Store Manager</option><option value="SITE_ENGINEER">Site Engineer</option>
                             </select>
                         </div>
@@ -164,10 +164,10 @@ export default function UsersPage() {
             </div>
 
             {/* Users table */}
-            <div className="bg-white border border-brand-200 rounded-xl shadow-xl overflow-hidden">
+            <div className="bg-white border border-gray-300 rounded-xl shadow-xl overflow-hidden">
                 <div className="p-6"><div className="overflow-x-auto -mx-6 px-6">
                     <table className="w-full text-left border-collapse">
-                        <thead><tr className="border-b border-brand-200"><th className="pb-3 text-xs font-semibold text-brand-400 uppercase tracking-wider">Name</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Email</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Phone</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Role</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">State</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">District</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Block</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Site</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Actions</th></tr></thead>
+                        <thead><tr className="border-b border-gray-400"><th className="pb-3 text-xs font-semibold text-brand-400 uppercase tracking-wider">Name</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Email</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Phone</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Role</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">State</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">District</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Block</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Site</th><th className="pb-3 pl-4 text-xs font-semibold text-brand-400 uppercase tracking-wider">Actions</th></tr></thead>
                         <tbody>{(() => {
                             const paged = filteredUsers.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
                             return paged.length > 0 ? paged.map(u => (
