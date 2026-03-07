@@ -111,8 +111,13 @@ export const siteEnggRequestController = async(req:Request<{}, {} ,CreateMateria
                     }))
                 }
             },
+            include: {items: true}
         })
-
+        console.log("Sending response...");
+      return res.status(201).json({
+           message: "Request created",
+           id: request.id,
+});
     } catch (error) {
          console.error('error while creating request :', error);
       return res.status(500).json({ error: 'Internal Server error.' });
